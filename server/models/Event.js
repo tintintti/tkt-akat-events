@@ -51,6 +51,17 @@ eventSchema.statics.removeEvent = function (eventID) {
     })
 }
 
+eventSchema.statics.updateEvent = function (id, doc) {
+    console.log(doc);
+    return this.findOneAndUpdate({_id: id}, doc).exec().then((event) => {
+        console.log(event);
+        return Promise.resolve(event);
+    }).catch((err) => {
+        console.log(err);
+        return Promise.reject();
+    })
+}
+
 eventSchema.statics.addPatricipant = function (eventId, doc) {
     console.log(doc);
     if (doc.email === undefined || !/^[^@]+@[^@]+$/.test(doc.email))

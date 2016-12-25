@@ -80,7 +80,7 @@ class EventList extends Component {
         return (
             <div className="EventList">
             <h2>Tapahtumat</h2>
-            <AddEvent addEvent={this.addEvent} />
+            <AddEvent addEvent={this.addEvent} title="Lisää tapahtuma" cName="AddEvent" />
             <div className="Events">
             <input type="button" value="Tulevat tapahtumat" onClick={this.getEvents} />
             <input type="button" value="Menneet tapahtumat" onClick={this.showPast} />

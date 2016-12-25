@@ -12,7 +12,6 @@ class ParticipantList extends Component {
     }
 
     getParticipants() {
-        console.log("asd");
         fetch('/api/events/' + this.props.event._id + '/participants', {
             accept: 'application/json'
         }).then(response => response.json())

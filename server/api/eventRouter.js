@@ -50,6 +50,14 @@ router.delete('/events/:id/participants/:pid', (req, res) => {
     })
 });
 
+router.put('/events/:id', (req, res) => {
+    Event.updateEvent(req.params.id, req.body).then((event) => {
+        res.json(event);
+    }).catch(() => {
+        res.sendStatus(500);
+    })
+})
+
 router.delete('/events/:id', (req, res) => {
     Event.removeEvent(req.params.id).then((data) => {
         res.json(data);

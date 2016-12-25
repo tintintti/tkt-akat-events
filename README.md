@@ -1,7 +1,6 @@
 Event registration system for tkt-akat.
 
 ####TODO:
-- editing events
 - removing participants (front)
 - authentication & login
     - creator of an event can edit or delete/cancel their events
