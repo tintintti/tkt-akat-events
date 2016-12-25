@@ -1,0 +1,16 @@
+div.Event {
+    border: 3px solid #018d8c;
+    border-radius: 5px;
+    margin-bottom: 1em;
+    margin-top: 1em;
+    padding: 1em;
+    width: 100% -1em;
+}
+
+.Event section {
+    color: #373035;
+}
+
+button.removeEvent {
+    float: right;
+}
