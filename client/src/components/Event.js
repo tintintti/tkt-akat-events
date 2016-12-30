@@ -3,6 +3,7 @@ import moment from 'moment';
 import ParticipantList from './ParticipantList';
 import EditEvent from './EditEvent';
 import '../styles/Event.css';
+import Auth from '../modules/Auth';
 
 class Event extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class Event extends Component {
         this.state = {event: props.event}
         this.remove = this.remove.bind(this);
         this.registration = this.registration.bind(this);
+        this.saveEvent = this.saveEvent.bind(this);
     }
 
     remove() {
@@ -18,6 +20,7 @@ class Event extends Component {
     }
 
     renderDate(date) {
+        console.log(date, moment(date).isValid());
         if (moment(date).isValid())
             return moment(date).format("DD.MM.YYYY HH:mm");
         else
@@ -31,28 +34,37 @@ class Event extends Component {
     }
 
     updateEvent() {
-        fetch('/api/events' + this.state.event._id, {
+        fetch('/api/events/' + this.state.event._id, {
             accept: 'application/json'
         }).then(response => response.json())
         .then(event => {
-            this.setState({event: event}).then(() => {
+            console.log(event);
+            this.setState({event: event}, () => {
                 this.render();
             })
+        }).catch((err) => {
+            console.error(err);
+            alert("Tapahtuman hakeminen epäonnistui")
         })
     }
 
     saveEvent(event) {
+        let token = Auth.getToken();
+        let body = {event, token: token};
+        console.log(body);
         fetch('/api/events/' + event._id, {
             method: 'put',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(event)
+            body: JSON.stringify(body)
         }).then((msg) => {
-            console.log(msg);
-        }).catch(() => {
-            alert('Tapahtuman päivittäminen epäonistui');
+            this.updateEvent();
+            console.log("updated", msg);
+        }).catch((err) => {
+            console.error(err);
+            alert('Tapahtuman päivittäminen epäonnistui');
         })
     }
 
@@ -66,10 +78,10 @@ class Event extends Component {
                 /{this.maxAttending(this.state.event.maxAttending)}</section>
 
                 </section>
-            )
+            );
         return (
             <p>Tapahtumaan ei tarvitse ilmoittautua.</p>
-        )
+        );
     }
 
     renderParticipantList() {
@@ -80,7 +92,10 @@ class Event extends Component {
     render() {
         return (
             <div className="Event">
-                <button className="removeEvent" onClick={this.remove}>Poista</button>
+                {Auth.isAuthenticated() ? (
+                    <button className="removeEvent" onClick={this.remove}>Poista</button>
+                ) : ''}
+
                 <h3>{this.state.event.title}</h3>
                 <section className="time">Ajankohta: {this.renderDate(this.state.event.start)}</section>
 
@@ -93,7 +108,10 @@ class Event extends Component {
 
                 {this.renderParticipantList()}
 
-                <EditEvent event={this.state.event} title="Muokkaa tapahtumaa" saveEvent={this.saveEvent}/>
+                {Auth.isAuthenticated() ? (
+                    <EditEvent event={this.state.event} title="Muokkaa tapahtumaa" saveEvent={this.saveEvent}/>
+                ): ''}
+
             </div>
         );
     }

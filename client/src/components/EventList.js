@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Event from './Event';
 import AddEvent from './AddEvent';
 import '../styles/EventList.css';
+import Auth from '../modules/Auth';
+import Login from './Login';
+import Logout from './Logout';
+import SignUp from './SignUp';
 
 class EventList extends Component {
     constructor(props) {
@@ -31,13 +35,15 @@ class EventList extends Component {
     }
 
     addEvent(newEvent) {
+        let body = {event: newEvent, token: Auth.getToken()}
+        console.log("add", body);
         return fetch('/api/events', {
             method: 'post',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({event: newEvent})
+            body: JSON.stringify(body)
         }).then((response) => {
             if (response.status === 500)
                 return Promise.reject();
@@ -54,6 +60,7 @@ class EventList extends Component {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
+                'x-access-token': Auth.getToken()
             }
         }).then((msg) => {
             this.getEvents();
@@ -80,7 +87,17 @@ class EventList extends Component {
         return (
             <div className="EventList">
             <h2>Tapahtumat</h2>
-            <AddEvent addEvent={this.addEvent} title="Lisää tapahtuma" cName="AddEvent" />
+            {Auth.isAuthenticated() ? (
+                <div>
+                <Logout update={this.getEvents} />
+                <AddEvent addEvent={this.addEvent} title="Lisää tapahtuma" cName="AddEvent" />
+                </div>
+            ) : (
+                <div className="LoginSign">
+                    <Login update={this.getEvents} /><br/>
+                    <SignUp update={this.getEvents} />
+                </div>)}
+
             <div className="Events">
             <input type="button" value="Tulevat tapahtumat" onClick={this.getEvents} />
             <input type="button" value="Menneet tapahtumat" onClick={this.showPast} />
