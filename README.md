@@ -1,5 +1,7 @@
 Event registration system for tkt-akat.
 
+https://tkt-akat-events.herokuapp.com/
+
 ####TODO:
 - removing participants (front)
 - authentication & login
