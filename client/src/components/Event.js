@@ -15,7 +15,6 @@ class Event extends Component {
     }
 
     remove() {
-        console.log(this.state.event._id);
         this.props.removeEvent(this.state.event._id);
     }
 
@@ -43,8 +42,7 @@ class Event extends Component {
             this.setState({event: event}, () => {
                 this.render();
             })
-        }).catch((err) => {
-            console.error(err);
+        }).catch(() => {
             alert("Tapahtuman hakeminen epäonnistui")
         })
     }
@@ -61,8 +59,7 @@ class Event extends Component {
             body: JSON.stringify(body)
         }).then((msg) => {
             this.updateEvent();
-        }).catch((err) => {
-            console.error(err);
+        }).catch(() => {
             alert("Tapahtuman päivittäminen epäonnistui");
         })
     }

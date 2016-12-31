@@ -1,4 +1,4 @@
 module.exports = {
-    secret: "superhienosalaisuus",
-    database: "mongodb://localhost/akat"
+    secret: process.env.JWT_SECRET || "superhienosalaisuus",
+    database: process.env.MONGODB_URI || "mongodb://localhost/akat"
 }
