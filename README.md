@@ -8,4 +8,3 @@ Event registration system for tkt-akat.
 - mailgun
     - email to participant when they register
     - email to participant who gets to attend from the queue when someone cancels
-- fix date formatting

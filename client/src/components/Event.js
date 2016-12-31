@@ -20,9 +20,11 @@ class Event extends Component {
     }
 
     renderDate(date) {
-        console.log(date, moment(date).isValid());
+
         if (moment(date).isValid())
             return moment(date).format("DD.MM.YYYY HH:mm");
+        else if (moment(date, "DD/MM/YYYY HH:mm").isValid)
+            return moment(date, "DD/MM/YYYY HH:mm").format("DD.MM.YYYY HH:mm");
         else
             return "";
     }
@@ -38,7 +40,6 @@ class Event extends Component {
             accept: "application/json"
         }).then(response => response.json())
         .then(event => {
-            console.log(event);
             this.setState({event: event}, () => {
                 this.render();
             })
@@ -51,7 +52,6 @@ class Event extends Component {
     saveEvent(event) {
         let token = Auth.getToken();
         let body = {event, token: token};
-        console.log(body);
         fetch("/api/events/" + event._id, {
             method: "put",
             headers: {
@@ -61,7 +61,6 @@ class Event extends Component {
             body: JSON.stringify(body)
         }).then((msg) => {
             this.updateEvent();
-            console.log("updated", msg);
         }).catch((err) => {
             console.error(err);
             alert("Tapahtuman päivittäminen epäonnistui");

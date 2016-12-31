@@ -1,5 +1,6 @@
 import EditEventBase from "./EditEventBase";
 import moment from "moment";
+import _ from "lodash";
 
 class EditEvent extends EditEventBase {
     constructor(props) {
@@ -12,7 +13,7 @@ class EditEvent extends EditEventBase {
 
     handleSubmit(event) {
         event.preventDefault();
-        let modified = this.state;
+        let modified = _.cloneDeep(this.state);
         modified.start = moment(this.state.start, "DD/MM/YYYY HH:mm").toDate();
         modified.registrationStart = moment(this.state.registrationStart, "DD/MM/YYYY HH:mm").toDate();
         modified.registrationEnd = moment(this.state.registrationEnd, "DD/MM/YYYY HH:mm").toDate();
