@@ -4,13 +4,11 @@ const
 
 describe("User model", function () {
     it("should not save password in plaintext", function (done) {
-        let user = new User({
-            name: "test",
+        User.create({
             email: "test",
             password: "lamepassword"
-        });
-        user.save().then((usr) => {
-            assert(usr.password !== "lamepassword");
+        }).then(user => {
+            assert(user.password !== "lamepassword");
             done();
         });
     });
@@ -19,7 +17,6 @@ describe("User model", function () {
         let user;
         beforeEach('create user', function (done) {
             User.create({
-                name: "test",
                 email: "test",
                 password: "lamepassword"
             }).then((usr) => {
