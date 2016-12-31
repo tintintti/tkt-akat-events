@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
-import moment from 'moment';
-import ParticipantList from './ParticipantList';
-import EditEvent from './EditEvent';
-import '../styles/Event.css';
-import Auth from '../modules/Auth';
+import React, { Component } from "react";
+import moment from "moment";
+import ParticipantList from "./ParticipantList";
+import EditEvent from "./EditEvent";
+import "../styles/Event.css";
+import Auth from "../modules/Auth";
 
 class Event extends Component {
     constructor(props) {
@@ -24,18 +24,18 @@ class Event extends Component {
         if (moment(date).isValid())
             return moment(date).format("DD.MM.YYYY HH:mm");
         else
-            return '';
+            return "";
     }
 
     maxAttending(max) {
         if (max > 0)
             return max;
-        return '-';
+        return "-";
     }
 
     updateEvent() {
-        fetch('/api/events/' + this.state.event._id, {
-            accept: 'application/json'
+        fetch("/api/events/" + this.state.event._id, {
+            accept: "application/json"
         }).then(response => response.json())
         .then(event => {
             console.log(event);
@@ -52,11 +52,11 @@ class Event extends Component {
         let token = Auth.getToken();
         let body = {event, token: token};
         console.log(body);
-        fetch('/api/events/' + event._id, {
-            method: 'put',
+        fetch("/api/events/" + event._id, {
+            method: "put",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(body)
         }).then((msg) => {
@@ -64,7 +64,7 @@ class Event extends Component {
             console.log("updated", msg);
         }).catch((err) => {
             console.error(err);
-            alert('Tapahtuman päivittäminen epäonnistui');
+            alert("Tapahtuman päivittäminen epäonnistui");
         })
     }
 
@@ -94,7 +94,7 @@ class Event extends Component {
             <div className="Event">
                 {Auth.isAuthenticated() ? (
                     <button className="removeEvent" onClick={this.remove}>Poista</button>
-                ) : ''}
+                ) : ""}
 
                 <h3>{this.state.event.title}</h3>
                 <section className="time">Ajankohta: {this.renderDate(this.state.event.start)}</section>
@@ -110,7 +110,7 @@ class Event extends Component {
 
                 {Auth.isAuthenticated() ? (
                     <EditEvent event={this.state.event} title="Muokkaa tapahtumaa" saveEvent={this.saveEvent}/>
-                ): ''}
+                ): ""}
 
             </div>
         );

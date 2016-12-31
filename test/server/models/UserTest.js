@@ -15,7 +15,7 @@ describe("User model", function () {
 
     describe("checkPassword", function () {
         let user;
-        beforeEach('create user', function (done) {
+        beforeEach("create user", function (done) {
             User.create({
                 email: "test",
                 password: "lamepassword"

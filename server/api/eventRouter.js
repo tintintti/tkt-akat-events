@@ -1,9 +1,9 @@
-let express = require('express'),
+let express = require("express"),
     router  = express.Router(),
-    Event = require('../models/Event'),
-    validateAuth = require('../middleware').validateAuth;
+    Event = require("../models/Event"),
+    validateAuth = require("../middleware").validateAuth;
 
-router.post('/events', validateAuth, (req, res) => {
+router.post("/events", validateAuth, (req, res) => {
     Event.addEvent(req.body.event).then((data) => {
         res.json(data);
     }).catch(() => {
@@ -11,7 +11,7 @@ router.post('/events', validateAuth, (req, res) => {
     });
 });
 
-router.get('/events', (req, res) => {
+router.get("/events", (req, res) => {
     let past = req.query.past || false;
     console.log(req.user);
     Event.getEvents({past: past}).then((events) => {
@@ -21,7 +21,7 @@ router.get('/events', (req, res) => {
     })
 });
 
-router.post('/events/:id/participants', (req, res) => {
+router.post("/events/:id/participants", (req, res) => {
     Event.addPatricipant(req.params.id, req.body).then((data) => {
         res.json(data);
     }).catch((err) => {
@@ -29,7 +29,7 @@ router.post('/events/:id/participants', (req, res) => {
     })
 });
 
-router.get('/events/:id/participants', (req, res) => {
+router.get("/events/:id/participants", (req, res) => {
     Event.getParticipants(req.params.id).then(participants => {
         res.json(participants);
     }).catch(() => {
@@ -37,7 +37,7 @@ router.get('/events/:id/participants', (req, res) => {
     });
 });
 
-router.delete('/events/:id/participants/:pid', (req, res) => {
+router.delete("/events/:id/participants/:pid", (req, res) => {
     Event.removePatricipant(req.params.id, req.params.pid).then(event => {
         res.json(event)
     }).catch(err => {
@@ -45,7 +45,7 @@ router.delete('/events/:id/participants/:pid', (req, res) => {
     })
 });
 
-router.put('/events/:id', validateAuth, (req, res) => {
+router.put("/events/:id", validateAuth, (req, res) => {
     Event.updateEvent(req.params.id, req.body).then((event) => {
         console.log("event updated", event);
         res.json(event);
@@ -54,7 +54,7 @@ router.put('/events/:id', validateAuth, (req, res) => {
     })
 })
 
-router.get('/events/:id', (req, res) => {
+router.get("/events/:id", (req, res) => {
     Event.findOne({_id: req.params.id}).exec().then((event) => {
         if (event === null)
             return res.sendStatus(404);
@@ -65,7 +65,7 @@ router.get('/events/:id', (req, res) => {
     })
 });
 
-router.delete('/events/:id', validateAuth, (req, res) => {
+router.delete("/events/:id", validateAuth, (req, res) => {
     Event.removeEvent(req.params.id).then((data) => {
         res.json(data);
     }).catch((err) => {

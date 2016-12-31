@@ -1,6 +1,6 @@
-let mongoose = require('mongoose'),
+let mongoose = require("mongoose"),
     Schema = mongoose.Schema,
-    bcrypt = require('bcrypt');
+    bcrypt = require("bcrypt");
 const saltRounds = 10;
 
 let userSchema = new Schema ({
@@ -10,9 +10,9 @@ let userSchema = new Schema ({
     admin: Boolean
 });
 
-userSchema.pre('save', function saveHook(next) {
+userSchema.pre("save", function saveHook(next) {
     let user = this;
-    if (!user.isModified('password'))
+    if (!user.isModified("password"))
         return next;
 
     return bcrypt.hash(user.password, saltRounds, (err, hash) => {
@@ -31,4 +31,4 @@ userSchema.methods.checkPassword = function (pswd) {
     })
 }
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model("User", userSchema);

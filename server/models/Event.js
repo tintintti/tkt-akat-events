@@ -1,7 +1,7 @@
-let mongoose = require('mongoose'),
+let mongoose = require("mongoose"),
     Schema = mongoose.Schema,
-    moment = require('moment'),
-    Participant = require('./Participant');
+    moment = require("moment"),
+    Participant = require("./Participant");
 
 let eventSchema = new Schema({
     title: {required: true, type: String},
@@ -12,18 +12,18 @@ let eventSchema = new Schema({
     registrationStart: Date,
     registrationEnd: Date,
     organiser: {required: true, type: String},
-    attending: [{type: Schema.Types.ObjectId, ref: 'Participant'}],
+    attending: [{type: Schema.Types.ObjectId, ref: "Participant"}],
     maxAttending: Number,
     questions: [String]
 });
 
 eventSchema.statics.getEvents = function (params) {
-    let today = moment().startOf('day').toDate();
-    let query = this.find().where('start');
+    let today = moment().startOf("day").toDate();
+    let query = this.find().where("start");
     if (params.past)
-        query = query.lt(today).sort({start: 'desc'});
+        query = query.lt(today).sort({start: "desc"});
     else
-        query = query.gte(today).sort({start: 'asc'});
+        query = query.gte(today).sort({start: "asc"});
 
     return query.exec().then((events) => {
         return Promise.resolve(events);
@@ -81,7 +81,7 @@ eventSchema.statics.addPatricipant = function (eventId, doc) {
 };
 
 eventSchema.statics.getParticipants = function (eventID) {
-    return this.findOne({_id: eventID}).populate({path: 'attending', options: {sort: {created: 'asc'}}}).exec().then((event) => {
+    return this.findOne({_id: eventID}).populate({path: "attending", options: {sort: {created: "asc"}}}).exec().then((event) => {
         return Promise.resolve(event.attending);
     }).catch(() => {
         return Promise.reject();
@@ -103,4 +103,4 @@ eventSchema.statics.removePatricipant = function (eventId, id) {
     });
 };
 
-module.exports = mongoose.model('Event', eventSchema);
+module.exports = mongoose.model("Event", eventSchema);

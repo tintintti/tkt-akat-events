@@ -1,9 +1,9 @@
 const
-    jwt = require('jsonwebtoken'),
-    config = require('./config');
+    jwt = require("jsonwebtoken"),
+    config = require("./config");
 
 exports.validateAuth = (req, res, next) => {
-    let token = req.body.token || req.query.token || req.headers['x-access-token'];
+    let token = req.body.token || req.query.token || req.headers["x-access-token"];
     if (!token)
         return res.sendStatus(403);
 
@@ -12,5 +12,5 @@ exports.validateAuth = (req, res, next) => {
             return res.sendStatus(403);
         req.decoded = decoded;
         next();
-    })
+    });
 }

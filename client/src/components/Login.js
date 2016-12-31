@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import Auth from '../modules/Auth';
-import '../styles/Login.css';
+import React, { Component } from "react";
+import Auth from "../modules/Auth";
+import "../styles/Login.css";
 
 class Login extends Component {
     constructor(props) {
         super(props);
-        this.state = {email: '', password: ''};
+        this.state = {email: "", password: ""};
         this.bindState = this.bindState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -15,11 +15,11 @@ class Login extends Component {
     }
 
     handleSubmit() {
-        fetch('/api/login', {
-            method: 'post',
+        fetch("/api/login", {
+            method: "post",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(this.state)
         }).then(response => response.json())
@@ -36,9 +36,9 @@ class Login extends Component {
             <div className="Login">
                 <h4>Kirjaudu</h4>
                 <label>Sähköpostiosoite<br/>
-                <input type="text" value={this.state.email} onChange={this.bindState('email')}/></label><br/>
+                <input type="text" value={this.state.email} onChange={this.bindState("email")}/></label><br/>
                 <label>Salasana<br/>
-                <input type="password" value={this.state.password} onChange={this.bindState('password')}/></label><br/>
+                <input type="password" value={this.state.password} onChange={this.bindState("password")}/></label><br/>
                 <button onClick={this.handleSubmit}>Kirjaudu</button>
             </div>
         );

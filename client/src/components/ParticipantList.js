@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import Participant from './Participant';
-import Registration from './Registration';
+import React, { Component } from "react";
+import Participant from "./Participant";
+import Registration from "./Registration";
 
 class ParticipantList extends Component {
     constructor(props) {
@@ -12,8 +12,8 @@ class ParticipantList extends Component {
     }
 
     getParticipants() {
-        fetch('/api/events/' + this.props.event._id + '/participants', {
-            accept: 'application/json'
+        fetch("/api/events/" + this.props.event._id + "/participants", {
+            accept: "application/json"
         }).then(response => response.json())
         .then(participants => {
             this.setState({participants: participants}, () => {

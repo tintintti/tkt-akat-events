@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import '../styles/Logout.css';
-import Auth from '../modules/Auth';
+import React, { Component } from "react";
+import "../styles/Logout.css";
+import Auth from "../modules/Auth";
 
 class Logout extends Component {
     constructor(props) {

@@ -1,22 +1,22 @@
-import EditEventBase from './EditEventBase';
-import '../styles/AddEvent.css';
-import moment from 'moment';
+import EditEventBase from "./EditEventBase";
+import "../styles/AddEvent.css";
+import moment from "moment";
 
 class AddEvent extends EditEventBase {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
-            description: '',
-            start: '',
-            organiser: '',
-            location: '',
+            title: "",
+            description: "",
+            start: "",
+            organiser: "",
+            location: "",
             registration: true,
-            registrationStart: '',
-            registrationEnd: '',
-            maxAttending: '',
+            registrationStart: "",
+            registrationEnd: "",
+            maxAttending: "",
             questions: [],
-            newQuestion: ''
+            newQuestion: ""
         }
     }
 
@@ -29,17 +29,17 @@ class AddEvent extends EditEventBase {
 
         this.props.addEvent(newEvent).then(() => {
             this.setState({
-                title: '',
-                description: '',
-                start: '',
-                organiser: '',
-                location: '',
+                title: "",
+                description: "",
+                start: "",
+                organiser: "",
+                location: "",
                 registration: true,
-                registrationStart: '',
-                registrationEnd: '',
-                maxAttending: '',
+                registrationStart: "",
+                registrationEnd: "",
+                maxAttending: "",
                 questions: [],
-                newQuestion: ''
+                newQuestion: ""
             });
         }).catch(() => {
             alert("Tapahtuman luominen epäonnistui.");

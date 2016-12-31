@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import Question from './Question';
-import '../styles/Registration.css';
-import _ from 'lodash';
+import React, { Component } from "react";
+import Question from "./Question";
+import "../styles/Registration.css";
+import _ from "lodash";
 
 class Registration extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: '',
-            email: '',
+            name: "",
+            email: "",
             questions: {}
         };
         this.renderQuestions = this.renderQuestions.bind(this);
@@ -33,11 +33,11 @@ class Registration extends Component {
         for (let q of this.props.questions) {
             participant.questions.push({q: q, a: this.state.questions[q]});
         }
-        fetch('/api/events/' + this.props.eventID + '/participants', {
+        fetch("/api/events/" + this.props.eventID + "/participants", {
             method: "post",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(participant)
         }).then((response) => {
@@ -56,9 +56,9 @@ class Registration extends Component {
             <div className="registration">
             <h4>Ilmoittautuminen</h4>
             <label>Nimi<br/>
-            <input value={this.state.name} onChange={this.bindState('name')}></input></label><br/>
+            <input value={this.state.name} onChange={this.bindState("name")}></input></label><br/>
             <label>Sähköpostiosoite<br/>
-            <input value={this.state.email} onChange={this.bindState('email')}></input></label><br/>
+            <input value={this.state.email} onChange={this.bindState("email")}></input></label><br/>
             {this.renderQuestions()}
             <button onClick={this.register}>Ilmoittaudu</button>
             </div>

@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 class Question extends Component {
     constructor(props) {
         super(props);
-        this.state = {q: props.question, a: ''};
+        this.state = {q: props.question, a: ""};
         this.handleChange = this.handleChange.bind(this);
     }
 

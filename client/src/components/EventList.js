@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
-import Event from './Event';
-import AddEvent from './AddEvent';
-import '../styles/EventList.css';
-import Auth from '../modules/Auth';
-import Login from './Login';
-import Logout from './Logout';
-import SignUp from './SignUp';
+import React, { Component } from "react";
+import Event from "./Event";
+import AddEvent from "./AddEvent";
+import "../styles/EventList.css";
+import Auth from "../modules/Auth";
+import Login from "./Login";
+import Logout from "./Logout";
+import SignUp from "./SignUp";
 
 class EventList extends Component {
     constructor(props) {
@@ -19,11 +19,11 @@ class EventList extends Component {
     }
 
     getEvents(params) {
-        let query = '';
+        let query = "";
         if (params)
-        query = params.past ? '?past=true' : '';
-        fetch('/api/events' + query, {
-            accept: 'application/json'
+        query = params.past ? "?past=true" : "";
+        fetch("/api/events" + query, {
+            accept: "application/json"
         }).then(response => response.json())
         .then(events => {
             this.setState({events: events}, () => {
@@ -37,11 +37,11 @@ class EventList extends Component {
     addEvent(newEvent) {
         let body = {event: newEvent, token: Auth.getToken()}
         console.log("add", body);
-        return fetch('/api/events', {
-            method: 'post',
+        return fetch("/api/events", {
+            method: "post",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+                "Accept": "application/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(body)
         }).then((response) => {
@@ -55,12 +55,12 @@ class EventList extends Component {
     }
 
     removeEvent(eventID) {
-        fetch('/api/events/' + eventID, {
-            method: 'delete',
+        fetch("/api/events/" + eventID, {
+            method: "delete",
             headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-                'x-access-token': Auth.getToken()
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "x-access-token": Auth.getToken()
             }
         }).then((msg) => {
             this.getEvents();

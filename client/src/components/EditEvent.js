@@ -1,13 +1,13 @@
-import EditEventBase from './EditEventBase';
-import moment from 'moment';
+import EditEventBase from "./EditEventBase";
+import moment from "moment";
 
 class EditEvent extends EditEventBase {
     constructor(props) {
         super(props);
         this.state = this.props.event;
-        this.state.start = moment(this.state.start).format('DD/MM/YYYY HH:mm');
-        this.state.registrationStart = moment(this.state.registrationStart).format('DD/MM/YYYY HH:mm');
-        this.state.registrationEnd = moment(this.state.registrationEnd).format('DD/MM/YYYY HH:mm');
+        this.state.start = moment(this.state.start).format("DD/MM/YYYY HH:mm");
+        this.state.registrationStart = moment(this.state.registrationStart).format("DD/MM/YYYY HH:mm");
+        this.state.registrationEnd = moment(this.state.registrationEnd).format("DD/MM/YYYY HH:mm");
     }
 
     handleSubmit(event) {

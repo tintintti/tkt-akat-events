@@ -1,11 +1,11 @@
-let express = require('express'),
+let express = require("express"),
     router  = express.Router(),
-    passport = require('passport'),
-    User = require('../models/User'),
-    jwt = require('jsonwebtoken'),
-    config = require('../config');
+    passport = require("passport"),
+    User = require("../models/User"),
+    jwt = require("jsonwebtoken"),
+    config = require("../config");
 
-router.post('/signup', (req, res) => {
+router.post("/signup", (req, res) => {
     if (!(req.body.email && req.body.password && req.body.name))
         return res.json({success: false});
     let newUser = new User({
@@ -21,7 +21,7 @@ router.post('/signup', (req, res) => {
     })
 });
 
-router.post('/login', (req, res) => {
+router.post("/login", (req, res) => {
     User.findOne({email: req.body.email}).then((user) => {
         if (!user)
             return res.sendStatus(403);

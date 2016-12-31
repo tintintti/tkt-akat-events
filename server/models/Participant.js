@@ -1,6 +1,6 @@
-let mongoose = require('mongoose'),
+let mongoose = require("mongoose"),
     Schema = mongoose.Schema,
-    moment = require('moment');
+    moment = require("moment");
 
 let participantSchema = new Schema({
     name: String,
@@ -16,4 +16,4 @@ participantSchema.statics.createParticipant = function (doc) {
     });
 };
 
-module.exports = mongoose.model('Participant', participantSchema);
+module.exports = mongoose.model("Participant", participantSchema);
