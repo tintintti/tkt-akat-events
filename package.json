@@ -4,7 +4,8 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "concurrently \"nodemon server.js\" \"cd client && npm start\""
+    "start": "concurrently \"nodemon server.js\" \"cd client && npm start\"",
+    "test": "mocha --recursive"
   },
   "author": "",
   "license": "ISC",
@@ -19,6 +20,9 @@
     "mongoose": "^4.7.1"
   },
   "devDependencies": {
-    "concurrently": "^3.1.0"
+    "better-assert": "^1.0.2",
+    "concurrently": "^3.1.0",
+    "mocha": "^3.2.0",
+    "mocha-mongoose": "^1.2.0"
   }
 }
