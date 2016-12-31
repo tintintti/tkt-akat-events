@@ -1,6 +1,5 @@
 let express = require("express"),
     router  = express.Router(),
-    passport = require("passport"),
     User = require("../models/User"),
     jwt = require("jsonwebtoken"),
     config = require("../config");

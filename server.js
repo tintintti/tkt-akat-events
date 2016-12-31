@@ -3,8 +3,7 @@ let express = require("express"),
     mongoose = require("mongoose"),
     router = require("./server/routes").router,
     bodyParser = require("body-parser"),
-    config = require("./server/config"),
-    cookieParser = require("cookie-parser");
+    config = require("./server/config");
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
@@ -14,8 +13,6 @@ app.set("secret", config.jwtSecret);
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-app.use(cookieParser());
 
 app.use(bodyParser.json())
 
