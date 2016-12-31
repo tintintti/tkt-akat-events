@@ -26,10 +26,10 @@ describe("User model", function () {
         });
 
         it("should resolve if given correct password", function (done) {
-            user.checkPassword("lamepassword").then(function () {
+            user.checkPassword("lamepassword").then(() => {
                 assert(true);
                 done();
-            }).catch(function () {
+            }).catch(() => {
                 assert(false);
                 done();
             });
