@@ -17,6 +17,7 @@ class EditEvent extends EditEventBase {
         modified.start = moment(this.state.start, "DD/MM/YYYY HH:mm").toDate();
         modified.registrationStart = moment(this.state.registrationStart, "DD/MM/YYYY HH:mm").toDate();
         modified.registrationEnd = moment(this.state.registrationEnd, "DD/MM/YYYY HH:mm").toDate();
+        modified.creator = this.state.creator.id;
         this.props.saveEvent(modified);
     }
 }

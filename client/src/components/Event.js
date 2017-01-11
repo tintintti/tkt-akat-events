@@ -88,7 +88,7 @@ class Event extends Component {
     render() {
         return (
             <div className="Event">
-                {Auth.isAuthenticated() ? (
+                {Auth.isAuthenticated() && Auth.getUser().id === this.state.event.creator._id ? (
                     <button className="removeEvent" onClick={this.remove}>Poista</button>
                 ) : ""}
 
@@ -104,7 +104,7 @@ class Event extends Component {
 
                 {this.renderParticipantList()}
 
-                {Auth.isAuthenticated() ? (
+                {Auth.isAuthenticated() && Auth.getUser().id === this.state.event.creator._id ? (
                     <EditEvent event={this.state.event} title="Muokkaa tapahtumaa" saveEvent={this.saveEvent}/>
                 ): ""}
 

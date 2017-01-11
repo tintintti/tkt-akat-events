@@ -45,7 +45,11 @@ router.delete("/events/:id/participants/:pid", (req, res) => {
 });
 
 router.put("/events/:id", validateAuth, (req, res) => {
-    Event.updateEvent(req.params.id, req.body).then((event) => {
+    Event.findOne({_id: req.params.id}).exec().then((event) => {
+        if (event.creator.toString() !== req.decodedToken.user.id)
+            return res.sendStatus(403);
+        return Event.updateEvent(req.params.id, req.body);
+    }).then((event) => {
         console.log("event updated", event);
         res.json(event);
     }).catch(() => {
@@ -65,10 +69,15 @@ router.get("/events/:id", (req, res) => {
 });
 
 router.delete("/events/:id", validateAuth, (req, res) => {
-    console.log("decoded token", req.decoded);
-    Event.removeEvent(req.params.id).then((data) => {
+    Event.findOne({_id: req.params.id}).exec().then(event => {
+        if (req.decodedToken.user.id !== event.creator.toString())
+            return Promise.reject({status: 403});
+        return Event.removeEvent(req.params.id);
+    }).then((data) => {
         res.json(data);
     }).catch((err) => {
+        if (err.status)
+            return res.sendStatus(err.status);
         res.sendStatus(500);
     });
 })
