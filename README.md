@@ -5,7 +5,6 @@ https://tkt-akat-events.herokuapp.com/
 ####TODO:
 - removing participants (front)
 - authentication & login
-    - creator of an event can edit or delete/cancel their events
     - participants get a password/token in email so they can edit or cancel their registration
 - mailgun
     - email to participant when they register
