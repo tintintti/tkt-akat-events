@@ -1,4 +1,5 @@
 import moment from "moment";
+import { Base64 } from "js-base64";
 
 class Auth {
     static authenticateUser(token) {
@@ -10,7 +11,8 @@ class Auth {
         if (!token)
             return false;
         let tokenPayload = token.split('.')[1];
-        let expires = JSON.parse(window.atob(tokenPayload)).exp;
+
+        let expires = JSON.parse(Base64.decode(tokenPayload)).exp;
         if (moment().isAfter(moment.unix(expires))) {
             localStorage.removeItem("token");
             return false;
@@ -25,6 +27,15 @@ class Auth {
     static getToken() {
         return localStorage.getItem("token");
     };
+
+    static getUser() {
+        let token = localStorage.getItem("token");
+        let payload = token.split('.')[1];
+        console.log(Base64.decode(payload));
+        let user = JSON.parse(Base64.decode(payload)).user;
+        console.log(user);
+        return user;
+    }
 }
 
 export default Auth;

@@ -1,11 +1,36 @@
-h2 {
+h2, h3, h4 {
     color: #cf0052;
 }
- h3 {
-     color: #cf0052;
- }
 
- div.App {
+div.App {
      margin: auto;
-     width: 70%
- }
+     width: 80%
+}
+
+button, input, textarea {
+    border: 1px solid;
+    border-radius: 2px;
+    font-size: 1em;
+    margin: 0.2em;
+    padding: 0.4em;
+    background-color: white;
+    color: black;
+}
+
+textarea, input[type=text], input[type=password], input[type=number] {
+    width: 15rem;
+    margin-bottom: 0.5em;
+}
+
+button {
+    color: #333;
+    padding-left: 1.3em;
+    padding-right: 1.3em;
+    cursor: pointer;
+}
+
+button.tiny {
+    padding: 0;
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+}

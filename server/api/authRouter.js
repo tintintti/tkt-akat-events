@@ -25,7 +25,7 @@ router.post("/login", (req, res) => {
         if (!user)
             return res.sendStatus(403);
         user.checkPassword(req.body.password).then(() => {
-            let token = jwt.sign({_id: user._id}, config.secret, {
+            let token = jwt.sign({user: {id: user._id, name: user.name}}, config.secret, {
                 expiresIn: "8h"
             });
             console.log("token", token);

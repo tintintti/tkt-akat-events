@@ -13,7 +13,6 @@ router.post("/events", validateAuth, (req, res) => {
 
 router.get("/events", (req, res) => {
     let past = req.query.past || false;
-    console.log(req.user);
     Event.getEvents({past: past}).then((events) => {
         res.json(events);
     }).catch(() => {
@@ -66,6 +65,7 @@ router.get("/events/:id", (req, res) => {
 });
 
 router.delete("/events/:id", validateAuth, (req, res) => {
+    console.log("decoded token", req.decoded);
     Event.removeEvent(req.params.id).then((data) => {
         res.json(data);
     }).catch((err) => {

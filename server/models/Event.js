@@ -11,7 +11,7 @@ let eventSchema = new Schema({
     registration: Boolean,
     registrationStart: Date,
     registrationEnd: Date,
-    organiser: {required: true, type: String},
+    creator: {required: true, type: Schema.Types.ObjectId, ref:"User"},
     attending: [{type: Schema.Types.ObjectId, ref: "Participant"}],
     maxAttending: Number,
     questions: [String]
@@ -25,7 +25,7 @@ eventSchema.statics.getEvents = function (params) {
     else
         query = query.gte(today).sort({start: "asc"});
 
-    return query.exec().then((events) => {
+    return query.populate({path: "creator", select:"name id"}).exec().then((events) => {
         return Promise.resolve(events);
     }).catch((err) => {
         console.log(err);

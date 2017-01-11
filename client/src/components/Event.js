@@ -95,7 +95,7 @@ class Event extends Component {
                 <h3>{this.state.event.title}</h3>
                 <section className="time">Ajankohta: {this.renderDate(this.state.event.start)}</section>
 
-                <section className="organiser">Vastuuhenkilö: {this.state.event.organiser}</section>
+                <section className="creator">Vastuuhenkilö: {this.state.event.creator.name}</section>
                 <section className="location">Paikka: {this.state.event.location}</section>
 
                 <p>{this.state.event.description}</p>

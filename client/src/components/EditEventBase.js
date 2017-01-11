@@ -7,7 +7,7 @@ class AddEvent extends Component {
             title: "",
             description: "",
             start: "",
-            organiser: "",
+            creator: {id: "", name: ""},
             location: "",
             registration: true,
             registrationStart: "",
@@ -33,14 +33,17 @@ class AddEvent extends Component {
         event.preventDefault();
     }
 
-    addQuestion() {
+    addQuestion(event) {
+        event.preventDefault();
         const q = this.state.newQuestion;
         this.setState({questions: this.state.questions.concat([q])}, () => {
+            this.setState({newQuestion: ""});
             this.render();
         });
     }
 
     removeQuestion(event) {
+        event.preventDefault();
         let questions = this.state.questions.slice();
         questions.splice(event.target.name, 1);
         this.setState({questions: questions}, () => {
@@ -50,7 +53,7 @@ class AddEvent extends Component {
 
     questions() {
         return this.state.questions.map((q, index) => {
-            return <li key={index}>{q} <input type="button" value="-" name={index} onClick={this.removeQuestion}/></li>;
+            return <li key={index}>{q} <button className="tiny" name={index} onClick={this.removeQuestion}>-</button></li>;
         });
     }
 
@@ -71,7 +74,7 @@ class AddEvent extends Component {
                 {this.questions()}
                 </ul>
                 <input type="text" value={this.state.newQuestion} onChange={this.bindState("newQuestion")} />
-                <input type="button" value="+" onClick={this.addQuestion} /><br/>
+                <button className="tiny" onClick={this.addQuestion} >+</button><br/>
                 </section>
             );
         return <br/>;
@@ -91,7 +94,7 @@ class AddEvent extends Component {
                 <label>Nimi:<br/><input type="text" value={this.state.title} onChange={this.bindState("title")} /></label><br/>
                 <label>Aika:<br/> <input type="text" placeholder="dd/mm/yyyy hh:mm" value={this.state.start} onChange={this.bindState("start")}></input></label><br/>
                 <label>Paikka:<br/><input type="text" value={this.state.location} onChange={this.bindState("location")}></input></label><br/>
-                <label>Vastuuhenkilö:<br/> <input type="text" value={this.state.organiser} onChange={this.bindState("organiser")}></input></label><br/>
+                <label>Vastuuhenkilö:<br/><p>{this.state.creator.name}</p></label><br/>
                 <label>Kuvaus:<br/> <textarea value={this.state.description} onChange={this.bindState("description")} /></label><br/>
                 <label><input type="checkbox" checked={this.state.registration} onChange={this.toggleRegistration} />
                 Ilmoittautuminen</label><br/>

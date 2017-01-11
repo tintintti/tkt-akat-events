@@ -1,6 +1,7 @@
 import EditEventBase from "./EditEventBase";
 import "../styles/AddEvent.css";
 import moment from "moment";
+import Auth from "../modules/Auth";
 
 class AddEvent extends EditEventBase {
     constructor(props) {
@@ -9,7 +10,7 @@ class AddEvent extends EditEventBase {
             title: "",
             description: "",
             start: "",
-            organiser: "",
+            creator: Auth.getUser(),
             location: "",
             registration: true,
             registrationStart: "",
@@ -32,7 +33,7 @@ class AddEvent extends EditEventBase {
                 title: "",
                 description: "",
                 start: "",
-                organiser: "",
+                creator: "",
                 location: "",
                 registration: true,
                 registrationStart: "",

@@ -8,8 +8,10 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "js-base64": "^2.1.9",
     "lodash": "^4.17.2",
     "react": "^15.4.1",
+    "react-bootstrap": "^0.30.7",
     "react-dom": "^15.4.1"
   },
   "scripts": {

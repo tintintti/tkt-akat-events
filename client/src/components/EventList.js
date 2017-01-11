@@ -99,8 +99,8 @@ class EventList extends Component {
                 </div>)}
 
             <div className="Events">
-            <input type="button" value="Tulevat tapahtumat" onClick={this.getEvents} />
-            <input type="button" value="Menneet tapahtumat" onClick={this.showPast} />
+            <button onClick={this.getEvents}>Tulevat tapahtumat</button>
+            <button onClick={this.showPast}>Menneet tapahtumat</button>
             {this.renderEvents()}
             </div>
             </div>

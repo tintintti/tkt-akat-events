@@ -10,7 +10,7 @@ exports.validateAuth = (req, res, next) => {
     jwt.verify(token, config.secret, (err, decoded) => {
         if (err)
             return res.sendStatus(403);
-        req.decoded = decoded;
+        req.decodedToken = decoded;
         next();
     });
 }
