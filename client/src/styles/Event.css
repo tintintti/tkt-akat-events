@@ -1,6 +1,6 @@
 div.Event {
-    border: 3px solid #018d8c;
-    border-radius: 5px;
+    border: 0.2rem solid #018d8c;
+    border-radius: 0.4rem;
     margin-bottom: 1em;
     margin-top: 1em;
     padding: 1em;

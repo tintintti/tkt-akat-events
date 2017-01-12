@@ -1,6 +1,6 @@
 div.EventList {
     border: 5px solid #f07797;
-    border-radius: 5px;
+    border-radius: 0.4rem;
     padding: 1em;
     margin-left: auto;
     margin-right: auto;
@@ -18,4 +18,8 @@ div.Events {
 
 div.LoginSign {
     float: left;
+}
+
+div.noEvents p {
+    text-align: center;
 }
