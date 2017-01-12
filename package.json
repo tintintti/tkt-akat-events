@@ -7,7 +7,8 @@
     "start": "concurrently \"nodemon server.js\" \"cd client && npm start\"",
     "server": "node server.js",
     "test": "mocha --recursive",
-    "install-dev": "npm install && cd client && npm install && cd .."
+    "install-dev": "npm install && cd client && npm install && cd ..",
+    "build": "cd client && npm run build && cd .."
   },
   "author": "",
   "license": "ISC",
@@ -15,9 +16,11 @@
     "bcrypt": "^1.0.1",
     "body-parser": "^1.15.2",
     "bootstrap": "^3.3.7",
+    "dotenv": "^4.0.0",
     "express": "^4.14.0",
     "jsonwebtoken": "^7.2.1",
     "lodash": "^4.17.2",
+    "mailgun-js": "^0.8.0",
     "moment": "^2.17.1",
     "mongoose": "^4.7.1"
   },

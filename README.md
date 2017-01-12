@@ -3,6 +3,7 @@ Event registration system for tkt-akat.
 https://tkt-akat-events.herokuapp.com/
 
 ####Running locally
+- .env file with the mongodb uri at the root
 - `npm run install-dev`
 - `npm start`
 
