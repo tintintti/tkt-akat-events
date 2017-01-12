@@ -6,7 +6,8 @@
   "scripts": {
     "start": "concurrently \"nodemon server.js\" \"cd client && npm start\"",
     "server": "node server.js",
-    "test": "mocha --recursive"
+    "test": "mocha --recursive",
+    "install-dev": "npm install && cd client && npm install && cd .."
   },
   "author": "",
   "license": "ISC",

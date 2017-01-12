@@ -2,6 +2,10 @@ Event registration system for tkt-akat.
 
 https://tkt-akat-events.herokuapp.com/
 
+####Running locally
+- `npm run install-dev`
+- `npm start`
+
 ####TODO:
 - removing participants (front)
 - authentication & login
