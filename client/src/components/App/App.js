@@ -1,16 +1,18 @@
 import React, { Component } from "react";
-import { browserHistory } from 'react-router';
 import Header from "../Header/Header";
-import Routes from "../../routes";
+import EventList from "../EventList/EventList";
+import MyEvents from "../MyEvents/MyEvents";
 import Auth from "../../modules/Auth";
 import "./App.css"
 
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {isAuthenticated: Auth.isAuthenticated()};
+        this.state = {isAuthenticated: Auth.isAuthenticated(), path: "events"};
         this.login = this.login.bind(this);
         this.logout = this.logout.bind(this);
+        this.showEvents = this.showEvents.bind(this);
+        this.showMyEvents = this.showMyEvents.bind(this);
     }
 
     login(loginInfo) {
@@ -32,7 +34,15 @@ class App extends Component {
 
     logout() {
         Auth.deauthenticateUser();
-        this.setState({isAuthenticated: false});
+        this.setState({isAuthenticated: false, path: "events"});
+    }
+
+    showMyEvents() {
+        this.setState({path: "myevents"});
+    }
+
+    showEvents() {
+        this.setState({path: "events"});
     }
 
     render() {
@@ -42,9 +52,14 @@ class App extends Component {
                 isAuthenticated={this.state.isAuthenticated}
                 login={this.login}
                 logout={this.logout}
-                history={browserHistory}
+                myevents={this.showMyEvents}
+                events={this.showEvents}
             />
-            <Routes history={browserHistory} />
+            {this.state.path === "myevents" ?
+                <MyEvents />
+                :
+                <EventList />
+            }
         </div>
     );
     }
