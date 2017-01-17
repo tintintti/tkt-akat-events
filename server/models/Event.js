@@ -26,6 +26,7 @@ eventSchema.statics.getEvents = function (params) {
         query = query.gte(today).sort({start: "asc"});
 
     return query.populate({path: "creator", select:"name id"}).exec().then((events) => {
+        console.log(events);
         return Promise.resolve(events);
     }).catch((err) => {
         console.log(err);
@@ -81,7 +82,7 @@ eventSchema.statics.addPatricipant = function (eventId, doc) {
 };
 
 eventSchema.statics.getParticipants = function (eventID) {
-    return this.findOne({_id: eventID}).populate({path: "attending", options: {sort: {created: "asc"}}}).exec().then((event) => {
+    return this.findOne({_id: eventID}).populate({path: "attending", options: {sort: {created: "asc"}, select: "name"}}).exec().then((event) => {
         return Promise.resolve(event.attending);
     }).catch(() => {
         return Promise.reject();

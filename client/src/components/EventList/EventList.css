@@ -1,0 +1,14 @@
+div.EventList {
+    width: 100%;
+    float: left;
+}
+
+div.Events {
+    min-width: 50%;
+    max-width: 80%;
+    margin: auto;
+}
+
+div.noEvents p {
+    text-align: center;
+}

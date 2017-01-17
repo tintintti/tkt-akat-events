@@ -31,9 +31,7 @@ class Auth {
     static getUser() {
         let token = localStorage.getItem("token");
         let payload = token.split('.')[1];
-        console.log(Base64.decode(payload));
         let user = JSON.parse(Base64.decode(payload)).user;
-        console.log(user);
         return user;
     }
 }

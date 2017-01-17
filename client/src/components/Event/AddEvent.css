@@ -1,0 +1,18 @@
+div.AddEvent {
+    border: 0.2rem solid #018d8c;
+    border-radius: 0.3rem;
+    margin: 1em;
+    padding: 1em;
+    display: inline;
+    float: left;
+}
+
+input, textarea {
+    border: 1px solid #591E23;
+    border-radius: 0.2rem;
+    background-color: ivory;
+}
+
+.AddEvent {
+    color: #373035;
+}
