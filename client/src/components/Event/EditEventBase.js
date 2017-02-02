@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class AddEvent extends Component {
+class EditEventBase extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -112,4 +112,4 @@ class AddEvent extends Component {
     }
 }
 
-export default AddEvent;
+export default EditEventBase;
