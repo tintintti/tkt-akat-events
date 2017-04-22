@@ -40,6 +40,7 @@ class Event extends Component {
             accept: "application/json"
         }).then(response => response.json())
         .then(event => {
+            console.log("event:", event);
             this.setState({event: event});
         }).catch(() => {
             alert("Tapahtuman hakeminen epäonnistui")

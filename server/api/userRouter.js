@@ -15,6 +15,6 @@ router.get("/users/:id/events", validateAuth, (req, res) => {
             console.error(err);
             res.sendStatus(500);
         });
-})
+});
 
 exports.router = router;

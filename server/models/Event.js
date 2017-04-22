@@ -26,7 +26,6 @@ eventSchema.statics.getEvents = function (params) {
         query = query.gte(today).sort({start: "asc"});
 
     return query.populate({path: "creator", select:"name id"}).exec().then((events) => {
-        console.log(events);
         return Promise.resolve(events);
     }).catch((err) => {
         console.log(err);
@@ -49,8 +48,8 @@ eventSchema.statics.removeEvent = function (eventID) {
         return Promise.resolve(data);
     }).catch(() => {
         return Promise.reject();
-    })
-}
+    });
+};
 
 eventSchema.statics.updateEvent = function (id, doc) {
     return this.findOneAndUpdate({_id: id}, doc.event, {new: true}).exec().then((event) => {
@@ -58,8 +57,8 @@ eventSchema.statics.updateEvent = function (id, doc) {
     }).catch((err) => {
         console.log(err);
         return Promise.reject();
-    })
-}
+    });
+};
 
 eventSchema.statics.addPatricipant = function (eventId, doc) {
     if (doc.email === undefined || !/^[^@]+@[^@]+$/.test(doc.email))

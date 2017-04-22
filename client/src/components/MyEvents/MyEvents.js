@@ -23,6 +23,7 @@ class MyEvents extends Component {
             }
         }).then(response => response.json())
         .then(events => {
+            console.log(events);
             this.setState({events: events}, () => {
                 this.render();
             });
