@@ -12,7 +12,7 @@ function requireAuth(nextState, replaceState) {
 const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={EventList} />
-        <Route path="/myevents" component={MyEvents} onEnter={requireAuth} />
+        <Route path="myevents" component={MyEvents} onEnter={requireAuth} />
     </Router>
 );
 

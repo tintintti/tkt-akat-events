@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 import Header from "../Header/Header";
 import Routes from "../../routes";
 import Auth from "../../modules/Auth";
@@ -42,9 +42,9 @@ class App extends Component {
                 isAuthenticated={this.state.isAuthenticated}
                 login={this.login}
                 logout={this.logout}
-                history={browserHistory}
+                history={hashHistory}
             />
-            <Routes history={browserHistory} />
+            <Routes history={hashHistory} />
         </div>
     );
     }

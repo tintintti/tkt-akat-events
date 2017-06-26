@@ -33,7 +33,7 @@ class Header extends Component {
                     {this.props.isAuthenticated ?
                     <ul>
                     <li><button onClick={this.logout}>Kirjaudu ulos</button></li>
-                    <li><a href="/myevents">Omat tapahtumat</a></li>
+                    <li><a href="#/myevents">Omat tapahtumat</a></li>
                     <li><a href="/">Tapahtumat</a></li>
                     </ul>
                     :
