@@ -87,7 +87,7 @@ class MyEvents extends Component {
                     addEvent={this.addEvent}
                 />
                 <div className="OwnEventList">
-                {this.renderEvents()}
+                { this.state.events.length > 0 ? this.renderEvents() : <div className="noEvents"><p>Ei tapahtumia.</p></div> }
                 </div>
             </div>
         )
