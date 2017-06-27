@@ -1,6 +1,7 @@
 div.EventList {
     width: 100%;
     float: left;
+    min-height: 25rem;
 }
 
 div.Events {
@@ -10,5 +11,6 @@ div.Events {
 }
 
 div.noEvents p {
+    margin-top: 6rem;
     text-align: center;
 }
