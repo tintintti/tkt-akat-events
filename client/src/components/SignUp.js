@@ -23,8 +23,7 @@ class SignUp extends Component {
             },
             body: JSON.stringify(this.state)
         }).then(() => {
-            this.setState({password: "", email: "", name: ""});
-            this.props.update();
+            window.location.replace("#/login");
         }).catch((err) => {
             console.error(err);
         })
@@ -33,7 +32,9 @@ class SignUp extends Component {
     render() {
         return (
             <div className="SignUp">
-                <h4>Rekisteröidy</h4>
+                <h3>Rekisteröidy</h3>
+                <p>Rekisteröityneenä vot luoda tapahtumia.<br/>
+                    Tapahtumiin ilmoittautumista varten ei tarvitse rekisteröityä.</p>
                 <label>Nimi<br/>
                 <input type="text" value={this.state.name} onChange={this.bindState("name")}/></label><br/>
                 <label>Sähköpostiosoite<br/>

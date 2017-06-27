@@ -15,16 +15,18 @@ class Login extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        console.log(this.props.login);
         this.props.login(this.state);
     }
 
     render() {
         return (
             <div className="Login">
-                <label>Sähköpostiosoite:
-                <input type="text" value={this.state.email} onChange={this.bindState("email")}/></label>
-                <label>Salasana:
-                <input type="password" value={this.state.password} onChange={this.bindState("password")}/></label>
+                <h3>Kirjaudu</h3>
+                <label>Sähköpostiosoite:<br/>
+                <input type="text" value={this.state.email} onChange={this.bindState("email")}/></label><br/>
+                <label>Salasana:<br/>
+                <input type="password" value={this.state.password} onChange={this.bindState("password")}/></label><br/>
                 <button onClick={this.handleSubmit}>Kirjaudu</button>
             </div>
         );

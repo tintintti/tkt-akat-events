@@ -25,6 +25,7 @@ class App extends Component {
         .then( msg => {
             Auth.authenticateUser(msg.token);
             this.setState({isAuthenticated: true});
+            window.location.replace("#/myevents");
         }).catch(err => {
             console.error(err);
         })
@@ -40,11 +41,10 @@ class App extends Component {
         <div className="App">
             <Header
                 isAuthenticated={this.state.isAuthenticated}
-                login={this.login}
                 logout={this.logout}
                 history={hashHistory}
             />
-            <Routes history={hashHistory} />
+            <Routes history={hashHistory} login={this.login}/>
         </div>
     );
     }

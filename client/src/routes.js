@@ -3,6 +3,8 @@ import { Router, Route } from "react-router";
 import Auth from "./modules/Auth";
 import EventList from "./components/EventList/EventList";
 import MyEvents from "./components/MyEvents/MyEvents";
+import SignUp from "./components/SignUp";
+import Login from "./components/Login";
 
 function requireAuth(nextState, replaceState) {
     if(!Auth.isAuthenticated())
@@ -13,6 +15,8 @@ const Routes = (props) => (
     <Router {...props}>
         <Route path="/" component={EventList} />
         <Route path="myevents" component={MyEvents} onEnter={requireAuth} />
+        <Route path="register" component={SignUp} />
+        <Route path="login" component={() => (<Login login={props.login} />)} />
     </Router>
 );
 

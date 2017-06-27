@@ -20,12 +20,13 @@ div.Header {
     font-size: 0.9rem;
 }
 
-.Header span#akat {
+.Header a#akat {
     font-family: 'Press Start 2P', cursive;
     font-size: 1.8rem;
     display: inline-flex;
     margin: 0.5rem;
     color: #f91b73;
+    text-decoration: none;
 }
 
 nav ul {
