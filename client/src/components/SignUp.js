@@ -33,7 +33,7 @@ class SignUp extends Component {
         return (
             <div className="SignUp">
                 <h3>Rekisteröidy</h3>
-                <p>Rekisteröityneenä vot luoda tapahtumia.<br/>
+                <p>Rekisteröityneenä voit luoda tapahtumia.<br/>
                     Tapahtumiin ilmoittautumista varten ei tarvitse rekisteröityä.</p>
                 <label>Nimi<br/>
                 <input type="text" value={this.state.name} onChange={this.bindState("name")}/></label><br/>
