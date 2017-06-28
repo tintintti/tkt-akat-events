@@ -14,7 +14,8 @@ let eventSchema = new Schema({
     creator: {required: true, type: Schema.Types.ObjectId, ref:"User"},
     attending: [{type: Schema.Types.ObjectId, ref: "Participant"}],
     maxAttending: Number,
-    questions: [String]
+    questions: [String],
+    eventType: {type: String, default: ""}
 });
 
 eventSchema.statics.getEvents = function (params) {

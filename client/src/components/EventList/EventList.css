@@ -5,9 +5,11 @@ div.EventList {
 }
 
 div.Events {
-    min-width: 50%;
-    max-width: 80%;
+    width: 100%;
     margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 div.noEvents p {

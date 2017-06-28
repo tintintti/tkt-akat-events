@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Event from "../Event/Event";
+import EventStub from "../Event/EventStub";
 import "./EventList.css";
 
 class EventList extends Component {
@@ -33,7 +33,7 @@ class EventList extends Component {
 
     renderEvents() {
         return this.state.events.map(event => (
-            <Event
+            <EventStub
             key={event._id}
             event={event}
             removeEvent={this.removeEvent}

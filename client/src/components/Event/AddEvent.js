@@ -18,7 +18,8 @@ class AddEvent extends EditEventBase {
             maxAttending: "",
             questions: [],
             newQuestion: "",
-            className: "AddEvent"
+            className: "AddEvent",
+            eventType: "defaultImg"
         };
     }
 

@@ -96,32 +96,33 @@ class Event extends Component {
     render() {
         return (
             <div className="Event">
-                {this.props.creator === this.state.event.creator._id  ? (
-                    <button className="removeEvent" onClick={this.remove}>Poista</button>
-                ) : ""}
+                <div className="EventBody">
+                    {this.props.creator === this.state.event.creator._id  ? (
+                        <button className="removeEvent" onClick={this.remove}>Poista</button>
+                    ) : ""}
 
-                <h3>{this.state.event.title}</h3>
-                <section className="time">Ajankohta: {this.renderDate(this.state.event.start)}</section>
+                    <h3>{this.state.event.title}</h3>
+                    <section className="time">Ajankohta: {this.renderDate(this.state.event.start)}</section>
 
-                <section className="creator">Vastuuhenkilö: {this.state.event.creator.name}</section>
-                <section className="location">Paikka: {this.state.event.location}</section>
+                    <section className="creator">Vastuuhenkilö: {this.state.event.creator.name}</section>
+                    <section className="location">Paikka: {this.state.event.location}</section>
 
-                <p>{this.state.event.description}</p>
+                    <p>{this.state.event.description}</p>
 
-                {this.registration()}
-                {this.props.creator === this.state.event.creator._id ?
-                    ""
-                    :
-                    this.renderParticipantList()
-                }
-                {this.props.creator === this.state.event.creator._id ?
-                        <button onClick={this.showEditing}>Muokkaa</button>
-                    : ""
-                }
-                {this.props.creator === this.state.event.creator._id && this.state.editing === true ? (
-                    <EditEvent event={this.state.event} title="" saveEvent={this.saveEvent} cancel={this.hideEditing} />
-                ): ""}
-
+                    {this.registration()}
+                    {this.props.creator === this.state.event.creator._id ?
+                        ""
+                        :
+                        this.renderParticipantList()
+                    }
+                    {this.props.creator === this.state.event.creator._id ?
+                            <button onClick={this.showEditing}>Muokkaa</button>
+                        : ""
+                    }
+                    {this.props.creator === this.state.event.creator._id && this.state.editing === true ? (
+                        <EditEvent event={this.state.event} title="" saveEvent={this.saveEvent} cancel={this.hideEditing} />
+                    ): ""}
+                </div>
             </div>
         );
     }

@@ -14,7 +14,8 @@ class EditEventBase extends Component {
             registrationEnd: "",
             maxAttending: "",
             questions: [],
-            newQuestion: ""
+            newQuestion: "",
+            eventType: "defaultImg"
         }
         this.bindState = this.bindState.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,6 +28,7 @@ class EditEventBase extends Component {
     }
 
     bindState(property) {
+        console.log(this.state);
         return (event) => { this.setState({[property]: event.target.value}) };
     }
 
@@ -67,11 +69,11 @@ class EditEventBase extends Component {
             return (
                 <section>
                 <label>Ilmoittautuminen alkaa:<br/><input type="text" placeholder="dd/mm/yyyy hh:mm"
-                value={this.state.registrationStart} onChange={this.bindState("registrationStart")}></input></label><br/>
+                value={this.state.registrationStart} onChange={this.bindState("registrationStart")} /></label><br/>
                 <label>Ilmoittautuminen loppuu:<br/><input type="text" placeholder="dd/mm/yyyy hh:mm"
-                value={this.state.registrationEnd} onChange={this.bindState("registrationEnd")}></input></label><br/>
+                value={this.state.registrationEnd} onChange={this.bindState("registrationEnd")} /></label><br/>
                 <label>Osallistujia enintään:<br/>
-                <input placeholder="jätä tyhjäksi jos ei rajoitettu" type="number" value={this.state.maxAttending} onChange={this.bindState("maxAttending")}></input></label><br/>
+                <input placeholder="jätä tyhjäksi jos ei rajoitettu" type="number" value={this.state.maxAttending} onChange={this.bindState("maxAttending")} /></label><br/>
                 Kysymykset:
                 <ul>
                 <li>Nimi</li>
@@ -96,9 +98,36 @@ class EditEventBase extends Component {
             <div className={this.state.className}>
                 <h3>{this.props.title}</h3>
                 <form onSubmit={this.handleSubmit}>
+                    <label>
+                        Tapahtumakuva:<br/>
+                        <label><input
+                            onChange={this.bindState("eventType")}
+                            type="radio" value="defaultImg"
+                            checked={this.state.eventType === "defaultImg"}/>defaultImg <div className="defaultImg small" /></label>
+                        <label><input
+                            onChange={this.bindState("eventType")}
+                            type="radio" value="study"
+                            checked={this.state.eventType === "study"}/>study <div className="study small" /></label>
+                        <label><input
+                            onChange={this.bindState("eventType")}
+                            type="radio" value="code"
+                            checked={this.state.eventType === "code"}/>code <div className="code small" /></label>
+                        <label><input
+                            onChange={this.bindState("eventType")}
+                            type="radio" value="party"
+                            checked={this.state.eventType === "party"}/>party <div className="party small" /></label>
+                        <label><input
+                            onChange={this.bindState("eventType")}
+                            type="radio" value="bar"
+                            checked={this.state.eventType === "bar"}/>bar <div className="bar small" /></label>
+                        <label><input
+                            onChange={this.bindState("eventType")}
+                            type="radio" value="chill"
+                            checked={this.state.eventType === "chill"}/>chill <div className="chill small" /></label>
+                    </label><br/>
                 <label>Nimi:<br/><input type="text" value={this.state.title} onChange={this.bindState("title")} /></label><br/>
-                <label>Aika:<br/> <input type="text" placeholder="dd/mm/yyyy hh:mm" value={this.state.start} onChange={this.bindState("start")}></input></label><br/>
-                <label>Paikka:<br/><input type="text" value={this.state.location} onChange={this.bindState("location")}></input></label><br/>
+                <label>Aika:<br/> <input type="text" placeholder="dd/mm/yyyy hh:mm" value={this.state.start} onChange={this.bindState("start")} /></label><br/>
+                <label>Paikka:<br/><input type="text" value={this.state.location} onChange={this.bindState("location")} /></label><br/>
                 <label>Vastuuhenkilö:<br/><p>{this.state.creator.name}</p></label><br/>
                 <label>Kuvaus:<br/> <textarea value={this.state.description} onChange={this.bindState("description")} /></label><br/>
                 <label><input type="checkbox" checked={this.state.registration} onChange={this.toggleRegistration} />

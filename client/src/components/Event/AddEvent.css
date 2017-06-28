@@ -16,3 +16,10 @@ input, textarea {
 .AddEvent {
     color: #373035;
 }
+
+div.small {
+    height: 2em;
+    width: 5em;
+    background-size: cover;
+    margin: 0;
+}

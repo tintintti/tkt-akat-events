@@ -1,10 +1,13 @@
 div.Event {
-    margin-bottom: 1em;
-    margin-top: 1em;
-    padding: 1em;
-    width: 100%;
+    margin: 1rem;
+    padding: 0;
+    width: 20rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #fff;
+}
+
+div.EventBody {
+    padding: 1rem;
 }
 
 .Event section {
@@ -13,4 +16,35 @@ div.Event {
 
 button.removeEvent {
     float: right;
+}
+
+div.EventHeader {
+    margin: 0;
+    width: 100%;
+    height: 10rem;
+    background-size: cover;
+}
+
+.defaultImg {
+    background-image: url("/calendar.jpg");
+}
+
+.study {
+    background-image: url("/study.jpg");
+}
+
+.code {
+    background-image: url("/code.jpg");
+}
+
+.party {
+    background-image: url("/party.jpg");
+}
+
+.bar {
+    background-image: url("/bar.jpg");
+}
+
+.chill {
+    background-image: url("/chill.jpg");
 }
