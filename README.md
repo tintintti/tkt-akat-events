@@ -7,6 +7,11 @@ https://tkt-akat-events.herokuapp.com/
 - `npm run install-dev`
 - `npm start`
 
+#### Deploying to Heroku
+- `npm run build`
+- commit client/build
+- push to Heroku
+
 #### TODO:
 - removing participants (front)
 - authentication & login
