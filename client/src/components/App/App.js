@@ -14,7 +14,7 @@ class App extends Component {
     }
 
     login(loginInfo) {
-        fetch("/api/login", {
+        return fetch("/api/login", {
             method: "post",
             headers: {
                 "Accept": "application/json",
@@ -28,6 +28,7 @@ class App extends Component {
             window.location.replace("#/myevents");
         }).catch(err => {
             console.error(err);
+            return Promise.reject("Sähköposti tai salasana väärin.")
         })
     }
 

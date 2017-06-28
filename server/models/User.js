@@ -7,7 +7,8 @@ let userSchema = new Schema ({
     name: String,
     email: {type: String, required: true, unique: true},
     password: String,
-    admin: Boolean
+    admin: Boolean,
+    verified: {type: Boolean, default: false}
 });
 
 userSchema.pre("save", function saveHook(next) {

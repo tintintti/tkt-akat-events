@@ -15,8 +15,10 @@ router.post("/signup", (req, res) => {
 
     newUser.save().then((user) => {
         res.json({success: true});
-    }).catch(() => {
-        res.json({success: false});
+    }).catch((err) => {
+        if (err.code === 11000)
+            return res.status(500).json({error: "Sähköpostiosoite on jo käytössä."})
+        res.status(500).json({error: "Server error"});
     })
 });
 
