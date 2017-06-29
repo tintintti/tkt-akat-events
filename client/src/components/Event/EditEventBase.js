@@ -97,33 +97,45 @@ class EditEventBase extends Component {
         return (
             <div className={this.state.className}>
                 <h3>{this.props.title}</h3>
-                <form onSubmit={this.handleSubmit}>
+                <form className="eventForm" onSubmit={this.handleSubmit}>
                     <label>
                         Tapahtumakuva:<br/>
-                        <label><input
-                            onChange={this.bindState("eventType")}
-                            type="radio" value="defaultImg"
-                            checked={this.state.eventType === "defaultImg"}/>defaultImg <div className="defaultImg small" /></label>
-                        <label><input
-                            onChange={this.bindState("eventType")}
-                            type="radio" value="study"
-                            checked={this.state.eventType === "study"}/>study <div className="study small" /></label>
-                        <label><input
-                            onChange={this.bindState("eventType")}
-                            type="radio" value="code"
-                            checked={this.state.eventType === "code"}/>code <div className="code small" /></label>
-                        <label><input
-                            onChange={this.bindState("eventType")}
-                            type="radio" value="party"
-                            checked={this.state.eventType === "party"}/>party <div className="party small" /></label>
-                        <label><input
-                            onChange={this.bindState("eventType")}
-                            type="radio" value="bar"
-                            checked={this.state.eventType === "bar"}/>bar <div className="bar small" /></label>
-                        <label><input
-                            onChange={this.bindState("eventType")}
-                            type="radio" value="chill"
-                            checked={this.state.eventType === "chill"}/>chill <div className="chill small" /></label>
+                        <div>
+                            <label><input
+                                onChange={this.bindState("eventType")}
+                                type="radio" value="defaultImg"
+                                checked={this.state.eventType === "defaultImg"}/>calendar <br/><div className="defaultImg small" /></label>
+                        </div>
+                        <div>
+                            <label><input
+                                onChange={this.bindState("eventType")}
+                                type="radio" value="study"
+                                checked={this.state.eventType === "study"}/>study <br/><div className="study small" /></label>
+                        </div>
+                        <div>
+                            <label><input
+                                onChange={this.bindState("eventType")}
+                                type="radio" value="code"
+                                checked={this.state.eventType === "code"}/>code <br/><div className="code small" /></label>
+                        </div>
+                        <div>
+                            <label><input
+                                onChange={this.bindState("eventType")}
+                                type="radio" value="party"
+                                checked={this.state.eventType === "party"}/>party <br/><div className="party small" /></label>
+                        </div>
+                        <div>
+                            <label><input
+                                onChange={this.bindState("eventType")}
+                                type="radio" value="bar"
+                                checked={this.state.eventType === "bar"}/>bar <br/><div className="bar small" /></label>
+                        </div>
+                        <div>
+                            <label><input
+                                onChange={this.bindState("eventType")}
+                                type="radio" value="chill"
+                                checked={this.state.eventType === "chill"}/>chill <br/><div className="chill small" /></label>
+                        </div>
                     </label><br/>
                 <label>Nimi:<br/><input type="text" value={this.state.title} onChange={this.bindState("title")} /></label><br/>
                 <label>Aika:<br/> <input type="text" placeholder="dd/mm/yyyy hh:mm" value={this.state.start} onChange={this.bindState("start")} /></label><br/>

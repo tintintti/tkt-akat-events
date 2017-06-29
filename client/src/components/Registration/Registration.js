@@ -56,9 +56,9 @@ class Registration extends Component {
             <div className="registration">
             <h4>Ilmoittautuminen</h4>
             <label>Nimi<br/>
-            <input value={this.state.name} onChange={this.bindState("name")}></input></label><br/>
+            <input value={this.state.name} onChange={this.bindState("name")} /></label><br/>
             <label>Sähköpostiosoite<br/>
-            <input value={this.state.email} onChange={this.bindState("email")}></input></label><br/>
+            <input value={this.state.email} onChange={this.bindState("email")} /></label><br/>
             {this.renderQuestions()}
             <button onClick={this.register}>Ilmoittaudu</button>
             </div>

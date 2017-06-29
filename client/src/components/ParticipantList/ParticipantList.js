@@ -23,7 +23,7 @@ class ParticipantList extends Component {
     }
 
     renderParticipants() {
-        let attending = this.state.participants.slice(0, this.props.event.maxAttending)
+        let attending = this.state.participants.slice(0, this.props.event.maxAttending || this.state.participants.length)
         return attending.map((participant, index) => (
             <li key={index}>
             <Participant key={participant._id} participant={participant} />
@@ -32,7 +32,7 @@ class ParticipantList extends Component {
     }
 
     renderQueue() {
-        let max = this.props.event.maxAttending;
+        let max = this.props.event.maxAttending || this.state.participants.length;
         let queue = this.state.participants.slice(max);
         return queue.map((participant, index) => (
             <li key={index + max}>
@@ -49,10 +49,16 @@ class ParticipantList extends Component {
             <ol>
             {this.renderParticipants()}
             </ol>
-            <h4>Jonossa</h4>
-            <ol>
-            {this.renderQueue()}
-            </ol>
+            {this.props.event.maxAttending && this.state.participants.length > this.props.event.maxAttending ?
+                <div>
+                <h4>Jonossa</h4>
+                <ol>
+                    {this.renderQueue()}
+                </ol>
+                </div>
+                :
+                ""
+            }
             </div>
         );
     }

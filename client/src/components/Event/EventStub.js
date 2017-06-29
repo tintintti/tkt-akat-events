@@ -5,7 +5,12 @@ let classnames = require('classnames');
 class EventStub extends Event {
     constructor(props){
         super(props);
+        this.state = {
+            event: props.event,
+            editing: false
+        };
         this.shortenDescription = this.shortenDescription.bind(this);
+        this.eventUrl = this.eventUrl.bind(this);
     }
 
     shortenDescription() {
@@ -13,6 +18,12 @@ class EventStub extends Event {
         if (this.state.event.description.length < descLength)
             return this.state.event.description;
         return this.state.event.description.substr(0, descLength)+"...";
+    }
+
+    componentDidMount() {}
+
+    eventUrl() {
+        return "#/event/" + this.state.event._id;
     }
 
     render() {
@@ -25,8 +36,8 @@ class EventStub extends Event {
             <div className="Event">
                 <div className={headerClasses} />
                 <div className="EventBody">
-                    <h3>{this.state.event.title}</h3>
-                    <h4>{this.renderDate(this.state.event.start)}</h4>
+                    <a href={this.eventUrl()}> <h2>{this.state.event.title}</h2></a>
+                    <h3>{this.renderDate(this.state.event.start)}</h3>
                     <section className="creator">Vastuuhenkilö: {this.state.event.creator.name}</section>
                     <section className="location">Paikka: {this.state.event.location}</section>
                     <p>{this.shortenDescription()}</p>

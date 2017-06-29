@@ -17,7 +17,9 @@ class Header extends Component {
     render() {
         return (
             <div className="Header">
-                <a id="akat" href="/">TKT-AKAT</a>
+                <div id="titleDiv">
+                    <a id="akat" href="/">TKT-AKAT</a>
+                </div>
             <nav>
                     {this.props.isAuthenticated ?
                     <ul>

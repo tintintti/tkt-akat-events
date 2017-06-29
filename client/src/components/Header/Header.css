@@ -29,6 +29,11 @@ div.Header {
     text-decoration: none;
 }
 
+.Header nav {
+    float: right;
+    margin-top: 2.5rem;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -45,4 +50,8 @@ nav a, a:visited {
     margin-top: 0;
     font-size: 1.2rem;
     color: #333;
+}
+
+#titleDiv {
+    display: inline-block;
 }

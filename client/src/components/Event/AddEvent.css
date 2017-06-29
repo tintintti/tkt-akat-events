@@ -5,6 +5,7 @@ div.AddEvent {
     float: left;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: #fff;
+    width: 18.5rem;
 }
 
 input, textarea {
@@ -22,4 +23,10 @@ div.small {
     width: 5em;
     background-size: cover;
     margin: 0;
+    display: block;
+}
+
+.eventForm div {
+    display: inline-block;
+    margin:0.1rem;
 }

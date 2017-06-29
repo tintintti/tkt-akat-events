@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import moment from "moment";
 import ParticipantList from "../ParticipantList/ParticipantList";
 import EditEvent from "./EditEvent";
+import classnames from 'classnames';
 import "./Event.css";
 import Auth from "../../modules/Auth";
 
@@ -94,8 +95,14 @@ class Event extends Component {
     }
 
     render() {
+        let headerClasses = classnames({
+            "EventHeader": true,
+            'defaultImg': !this.state.event.eventType,
+            [this.state.event.eventType]: this.state.event.eventType
+        });
         return (
             <div className="Event">
+                <div className={headerClasses} />
                 <div className="EventBody">
                     {this.props.creator === this.state.event.creator._id  ? (
                         <button className="removeEvent" onClick={this.remove}>Poista</button>
@@ -110,11 +117,9 @@ class Event extends Component {
                     <p>{this.state.event.description}</p>
 
                     {this.registration()}
-                    {this.props.creator === this.state.event.creator._id ?
-                        ""
-                        :
-                        this.renderParticipantList()
-                    }
+
+                    {this.renderParticipantList()}
+
                     {this.props.creator === this.state.event.creator._id ?
                             <button onClick={this.showEditing}>Muokkaa</button>
                         : ""

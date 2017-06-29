@@ -44,8 +44,6 @@ class EventList extends Component {
     render() {
         return (
             <div className="EventList">
-            <h2>Tapahtumat</h2>
-
             <div className="Events">
             { this.state.events.length > 0 ? this.renderEvents() : <div className="noEvents"><p>Ei tapahtumia.</p></div> }
             </div>

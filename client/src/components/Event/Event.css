@@ -3,11 +3,15 @@ div.Event {
     padding: 0;
     width: 20rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: #fff;
 }
 
 div.EventBody {
     padding: 1rem;
+    background-color: #fff;
+}
+
+.EventBody a {
+    text-decoration: none;
 }
 
 .Event section {
