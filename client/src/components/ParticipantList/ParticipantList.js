@@ -13,9 +13,14 @@ class ParticipantList extends Component {
 
     getParticipants() {
         fetch("/api/events/" + this.props.event._id + "/participants", {
-            accept: "application/json"
+            method: 'GET',
+            headers: {
+                accept: "application/json",
+                'x-access-token': this.props.token
+            }
         }).then(response => response.json())
         .then(participants => {
+            console.log("participants",participants);
             this.setState({participants: participants}, () => {
                 this.render();
             });
@@ -26,7 +31,7 @@ class ParticipantList extends Component {
         let attending = this.state.participants.slice(0, this.props.event.maxAttending || this.state.participants.length)
         return attending.map((participant, index) => (
             <li key={index}>
-            <Participant key={participant._id} participant={participant} />
+            <Participant key={participant._id} participant={participant} token={this.props.token} />
             </li>
         ));
     }
@@ -36,7 +41,7 @@ class ParticipantList extends Component {
         let queue = this.state.participants.slice(max);
         return queue.map((participant, index) => (
             <li key={index + max}>
-            <Participant key={participant._id} participant={participant} />
+                <Participant key={participant._id} participant={participant} token={this.props.token} />
             </li>
         ));
     }

@@ -18,6 +18,16 @@ let eventSchema = new Schema({
     eventType: {type: String, default: ""}
 });
 
+
+eventSchema.statics.getEvent = function(params) {
+    return this.findOne(params)
+        .populate({path: "creator", select: "name email id"})
+        .exec()
+        .then(event => {
+            return Promise.resolve(event);
+        });
+};
+
 eventSchema.statics.getEvents = function (params) {
     let today = moment().startOf("day").toDate();
     let query = this.find().where("start");
@@ -81,8 +91,15 @@ eventSchema.statics.addPatricipant = function (eventId, doc) {
     });
 };
 
-eventSchema.statics.getParticipants = function (eventID) {
-    return this.findOne({_id: eventID}).populate({path: "attending", options: {sort: {created: "asc"}, select: "name"}}).exec().then((event) => {
+eventSchema.statics.getParticipants = function (params) {
+    let select = "name";
+    if (params.auth)
+        select = "name email questions";
+    return this.findOne({_id: params.eventID}).populate({
+            path: "attending",
+            options: {sort: {created: "asc"},
+            select: select}
+    }).exec().then((event) => {
         return Promise.resolve(event.attending);
     }).catch(() => {
         return Promise.reject();

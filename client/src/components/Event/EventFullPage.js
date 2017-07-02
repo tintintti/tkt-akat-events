@@ -3,6 +3,7 @@ import Event from './Event';
 import classnames from 'classnames';
 import EditEvent from "./EditEvent";
 import './EventFullPage.css';
+import Auth from '../../modules/Auth';
 
 class EventFullPage extends Event {
     constructor(props) {
@@ -27,7 +28,7 @@ class EventFullPage extends Event {
         };
     }
 
-    componentDidMount() {
+    componentWillMount() {
         fetch("/api/events/" + this.props.params.id, {
             accept: "application/json"
         }).then(response => response.json())
@@ -46,20 +47,25 @@ class EventFullPage extends Event {
             'defaultImg': !this.state.event.eventType,
             [this.state.event.eventType]: this.state.event.eventType
         });
+        console.log("event", this.state.event);
         return (
             <div className="EventFullPage">
                 <div className={headerClasses}>
-                    <a href="/"><img className="backArrow" alt="Back to events" src="/back.png" /></a>
+                    <a onClick={this.props.router.goBack}><img className="backArrow" alt="Back" src="/back.png" /></a>
                 </div>
                 <div className="EventBody">
-                    {this.props.creator && this.props.creator === this.state.event.creator._id  ? (
+                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator ? (
                         <button className="removeEvent" onClick={this.remove}>Poista</button>
                     ) : ""}
 
                     <h2>{this.state.event.title}</h2>
                     <section className="time">Ajankohta: {this.renderDate(this.state.event.start)}</section>
 
-                    <section className="creator">Vastuuhenkilö: {this.state.event.creator.name}</section>
+                    <section className="creator">
+                        Vastuuhenkilö: {this.state.event.creator.name}
+                        &ensp;{this.state.event.creator.email}
+
+                    </section>
                     <section className="location">Paikka: {this.state.event.location}</section>
 
                     <p>{this.state.event.description.split('\n').map((item, key) => {
@@ -68,11 +74,11 @@ class EventFullPage extends Event {
 
                     {this.registration()}
                     {this.renderParticipantList()}
-                    {this.props.creator && this.props.creator === this.state.event.creator._id ?
+                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator ?
                         <button onClick={this.showEditing}>Muokkaa</button>
                         : ""
                     }
-                    {this.props.creator && this.props.creator === this.state.event.creator._id && this.state.editing === true ? (
+                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator && this.state.editing === true ? (
                         <EditEvent event={this.state.event} title="" saveEvent={this.saveEvent} cancel={this.hideEditing} />
                     ): ""}
                 </div>

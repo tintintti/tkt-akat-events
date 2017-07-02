@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Event from "../Event/Event";
+import EventStub from "../Event/EventStub";
 import AddEvent from "../Event/AddEvent";
 import Auth from "../../modules/Auth";
 
@@ -69,7 +69,7 @@ class MyEvents extends Component {
 
     renderEvents() {
         return this.state.events.map(event => (
-            <Event
+            <EventStub
                 key={event._id}
                 event={event}
                 creator={Auth.getUser().id}

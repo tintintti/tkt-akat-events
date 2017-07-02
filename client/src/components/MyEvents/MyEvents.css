@@ -1,6 +1,9 @@
 div.OwnEventList {
     float: left;
-    min-width: 50%;
+    width: 60%;
+    display: inline-flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 div.OwnEvents {

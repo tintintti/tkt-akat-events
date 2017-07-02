@@ -13,4 +13,16 @@ exports.validateAuth = (req, res, next) => {
         req.decodedToken = decoded;
         next();
     });
+};
+
+exports.checkAuth = (req, res, next) => {
+    let token = req.body.token || req.query.token || req.headers["x-access-token"];
+    if (!token)
+        return next();
+    jwt.verify(token, config.secret, (err, decoded) => {
+        if (err)
+            return next();
+        req.decodedToken = decoded;
+        next();
+    })
 }

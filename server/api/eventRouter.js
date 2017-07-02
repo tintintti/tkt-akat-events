@@ -1,7 +1,9 @@
 let express = require("express"),
     router  = express.Router(),
     Event = require("../models/Event"),
-    validateAuth = require("../middleware").validateAuth;
+    middleware = require("../middleware")
+    validateAuth = middleware.validateAuth,
+    checkAuth = middleware.checkAuth;
 
 router.post("/events", validateAuth, (req, res) => {
     Event.addEvent(req.body.event).then((data) => {
@@ -28,10 +30,10 @@ router.post("/events/:id/participants", (req, res) => {
     })
 });
 
-router.get("/events/:id/participants", (req, res) => {
-    Event.getParticipants(req.params.id).then(participants => {
+router.get("/events/:id/participants", checkAuth, (req, res) => {
+    Event.getParticipants({eventID: req.params.id, auth: req.decodedToken}).then(participants => {
         res.json(participants);
-    }).catch(() => {
+    }).catch((err) => {
         res.sendStatus(500)
     });
 });
@@ -45,7 +47,7 @@ router.delete("/events/:id/participants/:pid", (req, res) => {
 });
 
 router.put("/events/:id", validateAuth, (req, res) => {
-    Event.findOne({_id: req.params.id}).exec().then((event) => {
+    Event.getEvent({_id: req.params.id}).then((event) => {
         if (event.creator.toString() !== req.decodedToken.user.id)
             return res.sendStatus(403);
         return Event.updateEvent(req.params.id, req.body);
@@ -55,10 +57,10 @@ router.put("/events/:id", validateAuth, (req, res) => {
     }).catch(() => {
         res.sendStatus(500);
     })
-})
+});
 
 router.get("/events/:id", (req, res) => {
-    Event.findOne({_id: req.params.id}).exec().then((event) => {
+    Event.getEvent({_id: req.params.id}).then((event) => {
         if (event === null)
             return res.sendStatus(404);
         res.json(event);

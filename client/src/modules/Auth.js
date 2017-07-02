@@ -30,6 +30,8 @@ class Auth {
 
     static getUser() {
         let token = localStorage.getItem("token");
+        if (!token || !this.isAuthenticated())
+            return;
         let payload = token.split('.')[1];
         let user = JSON.parse(Base64.decode(payload)).user;
         return user;

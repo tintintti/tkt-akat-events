@@ -90,8 +90,9 @@ class Event extends Component {
     }
 
     renderParticipantList() {
-        if (moment().isBetween(this.state.event.registrationStart, this.state.event.registrationEnd))
-            return <ParticipantList event={this.state.event} />;
+        if (moment().isBetween(this.state.event.registrationStart, this.state.event.registrationEnd)
+            || (Auth.getUser() && Auth.getUser().id === this.state.event.creator))
+            return <ParticipantList event={this.state.event} token={Auth.getToken()}/>;
     }
 
     render() {
