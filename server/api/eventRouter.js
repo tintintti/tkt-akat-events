@@ -47,7 +47,7 @@ router.delete("/events/:id/participants/:pid", (req, res) => {
 });
 
 router.put("/events/:id", validateAuth, (req, res) => {
-    Event.getEvent({_id: req.params.id}).then((event) => {
+    Event.findOne({_id: req.params.id}).exec().then((event) => {
         if (event.creator.toString() !== req.decodedToken.user.id)
             return res.sendStatus(403);
         return Event.updateEvent(req.params.id, req.body);

@@ -47,14 +47,14 @@ class EventFullPage extends Event {
             'defaultImg': !this.state.event.eventType,
             [this.state.event.eventType]: this.state.event.eventType
         });
-        console.log("event", this.state.event);
+        console.log("rendering event", this.state.event);
         return (
             <div className="EventFullPage">
                 <div className={headerClasses}>
                     <a onClick={this.props.router.goBack}><img className="backArrow" alt="Back" src="/back.png" /></a>
                 </div>
                 <div className="EventBody">
-                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator ? (
+                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator._id ? (
                         <button className="removeEvent" onClick={this.remove}>Poista</button>
                     ) : ""}
 
@@ -74,11 +74,11 @@ class EventFullPage extends Event {
 
                     {this.registration()}
                     {this.renderParticipantList()}
-                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator ?
+                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator._id ?
                         <button onClick={this.showEditing}>Muokkaa</button>
                         : ""
                     }
-                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator && this.state.editing === true ? (
+                    {Auth.getUser() && Auth.getUser().id === this.state.event.creator._id && this.state.editing ? (
                         <EditEvent event={this.state.event} title="" saveEvent={this.saveEvent} cancel={this.hideEditing} />
                     ): ""}
                 </div>

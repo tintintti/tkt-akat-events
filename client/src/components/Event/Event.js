@@ -41,8 +41,7 @@ class Event extends Component {
             accept: "application/json"
         }).then(response => response.json())
         .then(event => {
-            console.log("event:", event);
-            this.setState({event: event});
+            this.setState({event: event, editing: false});
         }).catch(() => {
             alert("Tapahtuman hakeminen epäonnistui")
         })
@@ -64,6 +63,7 @@ class Event extends Component {
             headers: {
                 "Accept": "application/json",
                 "Content-Type": "application/json",
+                'x-access-token': token
             },
             body: JSON.stringify(body)
         }).then((msg) => {
