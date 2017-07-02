@@ -31,7 +31,7 @@ div.Header {
 
 .Header nav {
     float: right;
-    margin-top: 2.5rem;
+    margin-top: 0;
 }
 
 nav ul {
@@ -54,4 +54,5 @@ nav a, a:visited {
 
 #titleDiv {
     display: inline-block;
+    width: 100%;
 }

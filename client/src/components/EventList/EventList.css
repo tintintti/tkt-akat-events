@@ -2,6 +2,7 @@ div.EventList {
     width: 100%;
     float: left;
     min-height: 25rem;
+    margin-top: 1rem;
 }
 
 div.Events {
