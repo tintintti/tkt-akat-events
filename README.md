@@ -13,7 +13,6 @@ https://tkt-akat-events.herokuapp.com/
 - push to Heroku
 
 #### TODO:
-- list all info on participants for event creator
 - removing participants (front)
 - authentication & login
     - participants get a password/token in email so they can edit or cancel their registration
@@ -22,3 +21,4 @@ https://tkt-akat-events.herokuapp.com/
     - email to participant who gets to attend from the queue when someone cancels
     - verify email after sign up
 - date picker for event form
+- figure out a better way to deploy
