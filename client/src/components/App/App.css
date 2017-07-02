@@ -1,6 +1,6 @@
 div.App {
     width: 100%;
-    padding: 1em;
+    padding: 0;
     margin: 6rem auto 1rem auto;
     display: flex;
 }
