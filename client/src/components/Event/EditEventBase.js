@@ -28,7 +28,6 @@ class EditEventBase extends Component {
     }
 
     bindState(property) {
-        console.log(this.state);
         return (event) => { this.setState({[property]: event.target.value}) };
     }
 

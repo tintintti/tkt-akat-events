@@ -62,7 +62,9 @@ class EventFullPage extends Event {
                     <section className="creator">Vastuuhenkilö: {this.state.event.creator.name}</section>
                     <section className="location">Paikka: {this.state.event.location}</section>
 
-                    <p>{this.state.event.description}</p>
+                    <p>{this.state.event.description.split('\n').map((item, key) => {
+                        return <span key={key}>{item}<br/></span>
+                    })}</p>
 
                     {this.registration()}
                     {this.renderParticipantList()}
