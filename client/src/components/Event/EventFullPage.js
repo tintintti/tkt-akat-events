@@ -28,6 +28,21 @@ class EventFullPage extends Event {
         };
     }
 
+    remove() {
+        fetch("/api/events/" + this.state.event._id, {
+            method: "delete",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "x-access-token": Auth.getToken()
+            }
+        }).then((msg) => {
+            this.props.router.replace("/myevents");
+        }).catch((err) => {
+            console.error(err);
+        })
+    }
+
     componentWillMount() {
         fetch("/api/events/" + this.props.params.id, {
             accept: "application/json"
@@ -47,15 +62,14 @@ class EventFullPage extends Event {
             'defaultImg': !this.state.event.eventType,
             [this.state.event.eventType]: this.state.event.eventType
         });
-        console.log("rendering event", this.state.event);
         return (
             <div className="EventFullPage">
                 <div className={headerClasses}>
-                    <a onClick={this.props.router.goBack}><img className="backArrow" alt="Back" src="/back.png" /></a>
+                    <a href="/"><img className="backArrow" alt="Back" src="/back.png" /></a>
                 </div>
                 <div className="EventBody">
                     {Auth.getUser() && Auth.getUser().id === this.state.event.creator._id ? (
-                        <button className="removeEvent" onClick={this.remove}>Poista</button>
+                        <button className="removeEvent" onClick={this.remove.bind(this)}>Poista</button>
                     ) : ""}
 
                     <h2>{this.state.event.title}</h2>
