@@ -5,10 +5,13 @@ let express = require("express"),
     mongoose = require("mongoose"),
     router = require("./server/routes").router,
     bodyParser = require("body-parser"),
-    config = require("./server/config");
+    config = require("./server/config"),
+    helmet = require("helmet");
 
 mongoose.Promise = global.Promise;
 mongoose.connect(config.database);
+
+app.use(helmet());
 
 app.set("secret", config.jwtSecret);
 
