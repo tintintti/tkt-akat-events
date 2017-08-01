@@ -21,9 +21,7 @@ class ParticipantList extends Component {
         }).then(response => response.json())
         .then(participants => {
             console.log("participants",participants);
-            this.setState({participants: participants}, () => {
-                this.render();
-            });
+            this.setState({participants: participants});
         });
     }
 

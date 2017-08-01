@@ -16,7 +16,7 @@ class Question extends Component {
     render() {
         return (
             <div className="question">
-            <label>{this.state.q} <br/><input value={this.state.a} onChange={this.handleChange}></input></label>
+            <label>{this.state.q} <br/><input value={this.state.a} onChange={this.handleChange} /></label>
             </div>
         )
     }

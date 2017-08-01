@@ -9,7 +9,8 @@ class Registration extends Component {
         this.state = {
             name: "",
             email: "",
-            questions: {}
+            questions: {},
+            hasRegistered: false
         };
         this.renderQuestions = this.renderQuestions.bind(this);
         this.bindState = this.bindState.bind(this);
@@ -40,8 +41,11 @@ class Registration extends Component {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(participant)
-        }).then((response) => {
+        }).then(() => {
             this.props.update();
+            this.setState({
+                hasRegistered: true
+            });
         })
     }
 
@@ -52,17 +56,21 @@ class Registration extends Component {
     }
 
     render() {
-        return (
-            <div className="registration">
-            <h4>Ilmoittautuminen</h4>
-            <label>Nimi<br/>
-            <input value={this.state.name} onChange={this.bindState("name")} /></label><br/>
-            <label>Sähköpostiosoite<br/>
-            <input value={this.state.email} onChange={this.bindState("email")} /></label><br/>
-            {this.renderQuestions()}
-            <button onClick={this.register}>Ilmoittaudu</button>
-            </div>
-        );
+        if (!this.state.hasRegistered) {
+            return (
+                    <div className="registration">
+                        <h4>Ilmoittautuminen</h4>
+                        <label>Nimi<br/>
+                            <input value={this.state.name} onChange={this.bindState("name")}/></label><br/>
+                        <label>Sähköpostiosoite<br/>
+                            <input value={this.state.email} onChange={this.bindState("email")}/></label><br/>
+                        {this.renderQuestions()}
+                        <button onClick={this.register}>Ilmoittaudu</button>
+                    </div>
+
+            );
+        }
+        return (<div className="registration"><p className="message">Kiitos ilmoittautumisesta!</p></div>);
     }
 }
 

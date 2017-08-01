@@ -63,7 +63,7 @@ class EventFullPage extends Event {
 
                     <section className="creator">
                         Vastuuhenkilö: {this.state.event.creator.name}
-                        &ensp;{this.state.event.creator.email}
+                        &ensp;({this.state.event.creator.email})
 
                     </section>
                     <section className="location">Paikka: {this.state.event.location}</section>
