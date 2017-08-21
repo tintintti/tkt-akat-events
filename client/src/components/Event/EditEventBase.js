@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Datetime from 'react-datetime';
+import 'react-datetime/css/react-datetime.css';
 
 class EditEventBase extends Component {
     constructor(props) {
@@ -28,7 +30,12 @@ class EditEventBase extends Component {
     }
 
     bindState(property) {
-        return (event) => { this.setState({[property]: event.target.value}) };
+        return (event) => {
+            if (event._isAMomentObject)
+                this.setState({[property]: event.format('DD/MM/YYYY HH:mm')});
+            else
+                this.setState({[property]: event.target.value})
+        };
     }
 
     handleSubmit(event) {
@@ -67,10 +74,24 @@ class EditEventBase extends Component {
         if(this.state.registration)
             return (
                 <section>
-                <label>Ilmoittautuminen alkaa:<br/><input type="text" placeholder="dd/mm/yyyy hh:mm"
-                value={this.state.registrationStart} onChange={this.bindState("registrationStart")} /></label><br/>
-                <label>Ilmoittautuminen loppuu:<br/><input type="text" placeholder="dd/mm/yyyy hh:mm"
-                value={this.state.registrationEnd} onChange={this.bindState("registrationEnd")} /></label><br/>
+                <label>Ilmoittautuminen alkaa:<br/>
+                    <Datetime
+                        value={this.state.registrationStart}
+                        inputProps={{placeholder:'DD/MM/YYYY HH:mm'}}
+                        onChange={this.bindState("registrationStart")}
+                        closeOnSelect={true}
+                        timeFormat="HH:mm"
+                        dateFormat="DD/MM/YYYY"
+                    /></label><br/>
+                <label>Ilmoittautuminen loppuu:<br/>
+                    <Datetime
+                        value={this.state.registrationEnd}
+                        inputProps={{placeholder:'DD/MM/YYYY HH:mm'}}
+                        onChange={this.bindState("registrationEnd")}
+                        closeOnSelect={true}
+                        timeFormat="HH:mm"
+                        dateFormat="DD/MM/YYYY"
+                    /></label><br/>
                 <label>Osallistujia enintään:<br/>
                 <input placeholder="jätä tyhjäksi jos ei rajoitettu" type="number" value={this.state.maxAttending} onChange={this.bindState("maxAttending")} /></label><br/>
                 Kysymykset:
@@ -137,7 +158,15 @@ class EditEventBase extends Component {
                         </div>
                     </label><br/>
                 <label>Nimi:<br/><input type="text" value={this.state.title} onChange={this.bindState("title")} /></label><br/>
-                <label>Aika:<br/> <input type="text" placeholder="dd/mm/yyyy hh:mm" value={this.state.start} onChange={this.bindState("start")} /></label><br/>
+                <label>Aika:<br/>
+                    <Datetime
+                        value={this.state.start}
+                        onChange={this.bindState("start")}
+                        inputProps={{placeholder:'DD/MM/YYYY HH:mm'}}
+                        closeOnSelect={true}
+                        timeFormat="HH:mm"
+                        dateFormat="DD/MM/YYYY"
+                    /></label><br/>
                 <label>Paikka:<br/><input type="text" value={this.state.location} onChange={this.bindState("location")} /></label><br/>
                 <label>Vastuuhenkilö:<br/><p>{this.state.creator.name}</p></label><br/>
                 <label>Kuvaus:<br/> <textarea value={this.state.description} onChange={this.bindState("description")} /></label><br/>

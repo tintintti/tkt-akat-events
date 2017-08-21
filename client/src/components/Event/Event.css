@@ -52,3 +52,7 @@ div.EventHeader {
 .chill {
     background-image: url("/chill.jpg");
 }
+
+:not(.rdtOpen)>.rdtPicker {
+    display: none;
+}
