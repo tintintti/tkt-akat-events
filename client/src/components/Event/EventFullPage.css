@@ -31,6 +31,6 @@ div.EventFullPage div.EventHeader {
 
 @media screen and (max-width: 560px) {
     .EventFullPage {
-        width: 100%;
+        width: 90%;
     }
 }

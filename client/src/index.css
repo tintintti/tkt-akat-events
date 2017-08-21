@@ -8,6 +8,7 @@ html, body {
 body {
     font-family: 'Open Sans Condensed', sans-serif;
     background-color: #f2f2f2;
+    font-size: 1.1rem;
 }
 
 div#root {
@@ -41,11 +42,10 @@ footer {
     background:#00a8a7;
     text-align: center;
     opacity: 0.8;
-    font-size: 1.1rem;
 }
 
 footer p {
-    font-size: 0.9em;
+    font-size: 1rem;
     margin-top: 0.8rem;
     color: ivory;
 }

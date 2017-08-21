@@ -44,7 +44,7 @@ class SignUp extends Component {
             <div className="SignUp">
                 <h3>Rekisteröidy</h3>
                 <p>Rekisteröityneenä voit luoda tapahtumia.<br/>
-                    Tapahtumiin ilmoittautuminen ei vaadi rekisteröitymistä.</p>
+                    <span className="attn">HUOM!</span> Tapahtumiin ilmoittautuminen ei vaadi rekisteröitymistä.</p>
                 <form onSubmit={this.handleSubmit}>
                     <label>Nimi<br/>
                     <input type="text" value={this.state.name} onChange={this.bindState("name")}/></label><br/>

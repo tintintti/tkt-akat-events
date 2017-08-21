@@ -11,3 +11,8 @@ p.errorMessage {
     background-color: #ffe0ec;
     text-align: center;
 }
+
+span.attn {
+    color: #cf0052;
+    font-weight: 700;
+}
