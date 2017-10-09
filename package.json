@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "engines": {
-  "node": "6.11.1"
+    "node": "6.11.1"
   },
   "main": "server.js",
   "scripts": {
@@ -32,6 +32,7 @@
     "better-assert": "^1.0.2",
     "concurrently": "^3.1.0",
     "mocha": "^3.2.0",
-    "mocha-mongoose": "^1.2.0"
+    "mocha-mongoose": "^1.2.0",
+    "nodemon": "^1.12.1"
   }
 }
