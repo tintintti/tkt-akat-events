@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import moment from "moment";
 import Participant from "./Participant";
 import Registration from "../Registration/Registration";
 
@@ -47,7 +48,12 @@ class ParticipantList extends Component {
     render() {
         return (
             <div className="participantList">
-            <Registration questions={this.props.event.questions} eventID={this.props.event._id} update={this.getParticipants} />
+            {moment().isBefore(this.props.registrationEnd) ?
+              <Registration questions={this.props.event.questions} eventID={this.props.event._id} update={this.getParticipants} />
+            :
+              null
+            }
+
             <h4>Osallistujat</h4>
             <ol>
             {this.renderParticipants()}

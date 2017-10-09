@@ -90,9 +90,9 @@ class Event extends Component {
     }
 
     renderParticipantList() {
-        if (moment().isBetween(this.state.event.registrationStart, this.state.event.registrationEnd)
+        if (moment().isAfter(this.state.event.registrationStart)
             || (Auth.getUser() && Auth.getUser().id === this.state.event.creator))
-            return <ParticipantList event={this.state.event} token={Auth.getToken()}/>;
+            return <ParticipantList event={this.state.event} token={Auth.getToken()} registrationEnd={this.state.event.registrationEnd}/>;
     }
 
     render() {
